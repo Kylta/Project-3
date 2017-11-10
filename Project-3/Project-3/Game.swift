@@ -43,10 +43,10 @@ class Game {
         var i = 0
         // variable j for player 2
         var j = 1
-        
-        
-        // Method for print characters
-        
+        // variable for know how many turns players play
+        var turn = 0
+        // constante misteryTurn for the box appears on random turn
+        let mysteryTurn = Int(arc4random_uniform(UInt32(1))) + 1
         
         // Method for print characters opponent
         func indexOpponentCharacters() {
@@ -87,6 +87,7 @@ class Game {
             return chooseCharacter
         }
         
+        
         // While the team of player 1 or player 2 is not empty, it loop.
         while !players[0].team.isEmpty || !players[1].team.isEmpty {
             
@@ -107,10 +108,75 @@ class Game {
                 // Use an constante chooseCharacter for keep the choice
                 let chooseCharacter = selectCharacter(player: [players[i]])
                 
+                // Method for step 3, make appears a box in random turn
+                func mysteryBox() {
+                    // if turn is equal at misteryTurn then box appears
+                    if turn == mysteryTurn {
+                        /* In the box players have 2 option, 1: takes Super Weapon +5 damage for damager or +5 heal for mage or 2: takes armor and reduce damage opponent -3 points of damage (if they take out of range 1...2 then they lost bonus !) */
+                        print("\n==== MYSTERY BOX ===\nThere is a mystery box, you have 1 choice for 2 options.\n1: Super weapon (damage +5) if Mage: (heal +5)\n2: Armor (reduce -3 opponent damage)\n=== Take your choice ! ===")
+                        // Explain above !
+                        if let warrior = chooseCharacter as? Warrior {
+                            switch Tools.answerInt() {
+                            case 1:
+                                print("Warrior now has Super Sword (+5 damage)\nNow attack opponent !")
+                                warrior.weapon.damage += 5
+                            case 2:
+                                print("Warrior now has armor !\nNow attack opponent !")
+                                warrior.receiveDamage(damage: -3)
+                            default:
+                                print("You choose nothing !")
+                            }
+                        }
+                        // Explain above !
+                        if let giant = chooseCharacter as? Giant {
+                            switch Tools.answerInt() {
+                            case 1:
+                                print("Giant now has Super Mass (+5 damage)\nNow attack opponent !")
+                                giant.weapon.damage += 5
+                            case 2:
+                                print("Giant now has armor !\nNow attack opponent !")
+                                giant.receiveDamage(damage: -3)
+                            default:
+                                print("You choose nothing !")
+                            }
+                        }
+                        // Explain above !
+                        if let rogue = chooseCharacter as? Rogue {
+                            switch Tools.answerInt() {
+                            case 1:
+                                print("Rogue now has Super Dagger (+5 damage)\nNow attack opponent !")
+                                rogue.weapon.damage += 5
+                            case 2:
+                                print("Rogue now has armor !\nNow attack opponent !")
+                                rogue.receiveDamage(damage: -3)
+                            default:
+                                print("You choose nothing !")
+                            }
+                        }
+                        // Explain above !
+                        if let mage = chooseCharacter as? Mage {
+                            switch Tools.answerInt() {
+                            case 1:
+                                print("Mage now has Super Baton (+5 heal)")
+                                if let baton = mage.weapon as? Baton {
+                                    baton.heal += 5
+                                }
+                            case 2:
+                                print("Mage now has armor !\nNow attack opponent !")
+                                mage.receiveDamage(damage: -3)
+                            default:
+                                print("You choose nothing !")
+                            }
+                        }
+                    }
+                }
+                
                 // if chooseCharacter is Mage
                 if let mage = chooseCharacter as? Mage {
                     // Indicate at user what character he choose
                     print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+                    // Use mysteryBox for make appears the box with bonus
+                    mysteryBox()
                     print("\nHeal someone of your team (yourself is right) !")
                     // Loop for have index + name & type of characters
                     for character in players[i].team {
@@ -124,6 +190,8 @@ class Game {
                     // If chooseCharacter is different of Mage (Warrior, Rogue, Giant)
                     // Indicate at user what character he choose
                     print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+                    // Use mysteryBox for make appears the box with bonus
+                    mysteryBox()
                     // use indexOpponnentCharacters() for show at user opponent characters
                     indexOpponentCharacters()
                     // Then he choose pour attack an opponent character
@@ -179,6 +247,8 @@ class Game {
                     }
                 }
             }
+            // Increment of turn of 1
+            turn += 1
         }
     }
 }

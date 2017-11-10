@@ -16,7 +16,7 @@ class Baton: Weapon {
     // let type for indicate type weapon at user
     let type = "Baton"
     // Heal for baton (Mage)
-    let heal = 7
+    var heal = 7
     
     // Constructor
     init() {
