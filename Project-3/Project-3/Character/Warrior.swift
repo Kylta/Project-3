@@ -13,7 +13,7 @@ import Foundation
 // Class Warrior inherit of Character class
 class Warrior: Character {
     // Properties of class Warrior
-    // let type for indicate type at user
+    // let type for indicate type character at user
     let type = "Warrior"
     
     // Constructor
@@ -24,7 +24,7 @@ class Warrior: Character {
     }
     
     // Rewriting of the function getType of the class mother
-    // func for indicate at player what type of character he will choose
+    // override func for indicate at player what type of character he will choose
     override func getType() -> String {
         // let classe for add before let type
         let classe = "Class: "

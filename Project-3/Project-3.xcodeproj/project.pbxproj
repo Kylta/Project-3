@@ -13,6 +13,11 @@
 		46F16CD01FB5BCCF00235598 /* Giant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CCF1FB5BCCF00235598 /* Giant.swift */; };
 		46F16CD21FB5BCDC00235598 /* Rogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CD11FB5BCDC00235598 /* Rogue.swift */; };
 		46F16CD51FB5BCF100235598 /* Mage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CD41FB5BCF100235598 /* Mage.swift */; };
+		46F16CD91FB5C1B200235598 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CD81FB5C1B200235598 /* Weapon.swift */; };
+		46F16CDB1FB5C32100235598 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CDA1FB5C32100235598 /* Sword.swift */; };
+		46F16CDD1FB5C32600235598 /* Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CDC1FB5C32600235598 /* Mass.swift */; };
+		46F16CDF1FB5C32C00235598 /* Dagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CDE1FB5C32C00235598 /* Dagger.swift */; };
+		46F16CE11FB5C33100235598 /* Baton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CE01FB5C33100235598 /* Baton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +40,11 @@
 		46F16CCF1FB5BCCF00235598 /* Giant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giant.swift; sourceTree = "<group>"; };
 		46F16CD11FB5BCDC00235598 /* Rogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rogue.swift; sourceTree = "<group>"; };
 		46F16CD41FB5BCF100235598 /* Mage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mage.swift; sourceTree = "<group>"; };
+		46F16CD81FB5C1B200235598 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		46F16CDA1FB5C32100235598 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
+		46F16CDC1FB5C32600235598 /* Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mass.swift; sourceTree = "<group>"; };
+		46F16CDE1FB5C32C00235598 /* Dagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dagger.swift; sourceTree = "<group>"; };
+		46F16CE01FB5C33100235598 /* Baton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +79,7 @@
 			children = (
 				46F16CC11FB5B84000235598 /* main.swift */,
 				46F16CCA1FB5B97100235598 /* Character */,
+				46F16CD71FB5C19300235598 /* New Group */,
 			);
 			path = "Project-3";
 			sourceTree = "<group>";
@@ -83,6 +94,18 @@
 				46F16CD41FB5BCF100235598 /* Mage.swift */,
 			);
 			path = Character;
+			sourceTree = "<group>";
+		};
+		46F16CD71FB5C19300235598 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				46F16CD81FB5C1B200235598 /* Weapon.swift */,
+				46F16CDA1FB5C32100235598 /* Sword.swift */,
+				46F16CDC1FB5C32600235598 /* Mass.swift */,
+				46F16CDE1FB5C32C00235598 /* Dagger.swift */,
+				46F16CE01FB5C33100235598 /* Baton.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,8 +168,13 @@
 			files = (
 				46F16CCE1FB5BCC600235598 /* Warrior.swift in Sources */,
 				46F16CD21FB5BCDC00235598 /* Rogue.swift in Sources */,
+				46F16CDD1FB5C32600235598 /* Mass.swift in Sources */,
 				46F16CD01FB5BCCF00235598 /* Giant.swift in Sources */,
+				46F16CD91FB5C1B200235598 /* Weapon.swift in Sources */,
 				46F16CD51FB5BCF100235598 /* Mage.swift in Sources */,
+				46F16CDB1FB5C32100235598 /* Sword.swift in Sources */,
+				46F16CE11FB5C33100235598 /* Baton.swift in Sources */,
+				46F16CDF1FB5C32C00235598 /* Dagger.swift in Sources */,
 				46F16CC21FB5B84000235598 /* main.swift in Sources */,
 				46F16CCC1FB5B98400235598 /* Character.swift in Sources */,
 			);

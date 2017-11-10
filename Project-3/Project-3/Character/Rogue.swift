@@ -8,10 +8,12 @@
 
 import Foundation
 
+// Subclass of Character for create Rogue character
+
 // Class Rogue inherit of Character class
 class Rogue: Character {
     // Properties of class Rogue
-    // let type for indicate type at user
+    // let type for indicate type character at user
     let type = "Rogue"
     
     // Constructor
@@ -22,7 +24,7 @@ class Rogue: Character {
     }
     
     // Rewriting of the function getType of the class mother
-    // func for indicate at player what type of character he will choose
+    // overrider func for indicate at player what type of character he will choose
     override func getType() -> String {
         // let classe for add before let type
         let classe = "Class: "

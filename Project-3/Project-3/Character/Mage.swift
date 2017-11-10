@@ -8,10 +8,12 @@
 
 import Foundation
 
+// Subclass of Character for create Mage character
+
 // Class Mage inherit of Character class
 class Mage: Character {
     // Properties of class Mage
-    // let type for indicate type at user
+    // let type for indicate type character at user
     let type = "Mage"
     
     // Constructor
@@ -22,7 +24,7 @@ class Mage: Character {
     }
     
     // Rewriting of the function getType of the class mother
-    // func for indicate at player what type of character he will choose
+    // override func for indicate at player what type of character he will choose
     override func getType() -> String {
         // let classe for add before let type
         let classe = "Class: "
