@@ -15,7 +15,7 @@ class Tools {
     static func nameCharacter() -> String {
         // Indicate has user to pick a name for his character
         print("Pick a name !")
-        // let answer with func readLine to interact with user
+        // let answer with method readLine to interact with user
         let answer = readLine()
         
         // We force unwrapped answer because  are sure there will be a string
@@ -24,15 +24,21 @@ class Tools {
     
     // Method for player to interact with him for he choose action with Int like 1,2,3,4...
     static func answerInt() -> Int {
+        // let reponse with method readline for interact with user
         let reponse = readLine()
+        // unwrapped reponse with secure
         if let unwrappedReponse = reponse {
+            /// unwrapped unwrappedReponse for he become type Int
             if let answerInt = Int(unwrappedReponse) {
+                // if answerInt is an Int it return the number
                 return answerInt
             }
             else {
+                // If answerInt is not an Int it print "I don't understand"
                 print("I don't understand.")
             }
         }
+        // return method answerInt until it be an Int
         return answerInt()
     }
 }
