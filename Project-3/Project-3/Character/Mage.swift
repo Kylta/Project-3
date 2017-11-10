@@ -18,9 +18,9 @@ class Mage: Character {
     
     // Constructor
     init() {
-        // Name: (String), Life: 100, weapon: Baton (Heal: 7)
+        // Name: (String), Life: 100, weapon: Baton (Heal: 7), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 100, weapon: Baton())
+        super.init(name: Tools.nameCharacter(), life: 100, weapon: Baton(), level: 1)
     }
     
     // Rewriting of the function getType of the class mother
@@ -65,5 +65,14 @@ class Mage: Character {
         }
         // Indicate at user than Mage has heal character
         print("\(name) heal \(character.name) of \(baton.heal) points of life with \(weapon.name) and now \(character.name) life is \(character.life).\n")
+    }
+    
+    // Method for ultimatum Mage (BONUS)
+    func blessing(_ character: Player) {
+        // Give + 10 points of life at all characters of his team
+        for characters in character.team {
+            characters.life += 10
+            print("\(name) heal \(characters.name) of 10 points of life !")
+        }
     }
 }

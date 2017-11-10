@@ -47,6 +47,8 @@ class Game {
         var turn = 0
         // constante misteryTurn for the box appears on random turn
         let mysteryTurn = Int(arc4random_uniform(UInt32(1))) + 1
+        // variable for character up level (Bonus)
+        var turnLevel = 0
         
         // Method for print characters opponent
         func indexOpponentCharacters() {
@@ -104,7 +106,10 @@ class Game {
                     x += 1
                 }
                 x = 0
-                
+                // If turnLevel > 4, then turnLevel = 1
+                if turnLevel == 4 {
+                    turnLevel = 1
+                }
                 // Use an constante chooseCharacter for keep the choice
                 let chooseCharacter = selectCharacter(player: [players[i]])
                 
@@ -249,6 +254,7 @@ class Game {
             }
             // Increment of turn of 1
             turn += 1
+            turnLevel += 1
         }
     }
 }

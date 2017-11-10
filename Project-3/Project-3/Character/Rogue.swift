@@ -18,9 +18,9 @@ class Rogue: Character {
     
     // Constructor
     init() {
-        // Name: (String), Life: 80, weapon: Dagger (Damage: 15)
+        // Name: (String), Life: 80, weapon: Dagger (Damage: 15), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 80, weapon: Dagger())
+        super.init(name: Tools.nameCharacter(), life: 80, weapon: Dagger(), level: 1)
     }
     
     // Rewriting of the function getType of the class mother
@@ -29,5 +29,18 @@ class Rogue: Character {
         // let classe for add before let type
         let classe = "Class: "
         return classe + type
+    }
+    
+    // Method for ultimatum Rogue (BONUS)
+    func punishment(_ character: Character) {
+        // If opponent charater is a Giant then damage = 35
+        if character is Giant {
+            character.life -= 35
+            print("\(character.name) takes 35 damage, now \(character.name) had \(character.life) point of life !")
+        } else {
+            // If opponent charater is other than Giant then damage = 25
+            character.life -= 25
+            print("\(character.name) takes 25 damage, now \(character.name) had \(character.life) point of life !")
+        }
     }
 }

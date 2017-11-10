@@ -18,9 +18,9 @@ class Giant: Character {
     
     // Constructor
     init() {
-        // Name: (String), Life: 120, weapon: Mass (Damage: 5)
+        // Name: (String), Life: 120, weapon: Mass (Damage: 5), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 120, weapon: Mass())
+        super.init(name: Tools.nameCharacter(), life: 120, weapon: Mass(), level: 1)
     }
     
     // Rewriting of the function getType of the class mother
@@ -29,5 +29,14 @@ class Giant: Character {
         // let classe for add before let type
         let classe = "Class: "
         return classe + type
+    }
+    
+    // Method for ultimatum Giant (BONUS)
+    func earthquake(_ character: Player) {
+        // Made 10 damages at all opponent characters
+        for characters in character.team {
+            characters.life -= 10
+            print("\(characters.name) takes 15 damage !")
+        }
     }
 }

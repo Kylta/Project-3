@@ -19,17 +19,20 @@ class Character {
     var life: Int
     // add class Weapon at class Character for character take weapon
     var weapon: Weapon
+    // Level of character (BONUS)
+    var level: Int
     
     // Constructor
     
     convenience init() {
         // Create Character with properties empty
-        self.init(name: "", life: 0, weapon: Baton())
+        self.init(name: "", life: 0, weapon: Baton(), level: 0)
     }
-    init(name: String, life: Int, weapon: Weapon) {
+    init(name: String, life: Int, weapon: Weapon, level: Int) {
     self.name = name
     self.life = life
     self.weapon = weapon
+    self.level = level
     }
     
     // Get infos from class

@@ -18,9 +18,9 @@ class Warrior: Character {
     
     // Constructor
     init() {
-        // Name: (String), Life: 100, Weapon: Sword (Damage: 10)
+        // Name: (String), Life: 100, Weapon: Sword (Damage: 10), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 100, weapon: Sword())
+        super.init(name: Tools.nameCharacter(), life: 100, weapon: Sword(), level: 1)
     }
     
     // Rewriting of the function getType of the class mother
@@ -29,5 +29,14 @@ class Warrior: Character {
         // let classe for add before let type
         let classe = "Class: "
         return classe + type
+    }
+    
+    // Method for ultimatum Warrior (BONUS)
+    func spinningBlade(_ character: Player) {
+        // Made 15 damages at all opponent characters
+        for characters in character.team {
+            characters.life -= 15
+            print("\(characters.name) takes 15 damage !")
+        }
     }
 }
