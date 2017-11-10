@@ -21,6 +21,10 @@ class Character {
     var weapon: Weapon
     
     // Constructor
+    
+    convenience init() {
+        self.init(name: "", life: 0, weapon: Baton())
+    }
     init(name: String, life: Int, weapon: Weapon) {
     self.name = name
     self.life = life
@@ -35,6 +39,26 @@ class Character {
     // Instruction allowing to consider this function in the subclasses
     func getType() -> String {
         assert(false, "Write it in subclass Character")
+    }
+    
+    // Method for characters attack
+    func attack(_ character: Character) {
+        // Use on character the method receiveDamage for put the damage of the weapon init at characters
+        character.receiveDamage(damage: weapon.damage)
+        
+        // Indicate at user character has been attacked
+        print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).")
+    }
+    
+    // Method for character receive damage
+    func receiveDamage(damage: Int) {
+        // Remove life of damage put in setting
+        life -= damage
+        
+        // If the life is under 0, life = 0. Then life can't be under 0.
+        if life < 0 {
+            life = 0
+        }
     }
 }
 
