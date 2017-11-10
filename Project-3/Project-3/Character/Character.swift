@@ -64,6 +64,14 @@ class Character {
             life = 0
         }
     }
+    
+    // Method for character up level
+    func upLevel(turn: Int) {
+        if turn == 3 {
+            self.level += 1
+            print("\(self.name) up level \(self.level) !")
+        }
+    }
 }
 
 

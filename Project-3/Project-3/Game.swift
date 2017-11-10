@@ -47,7 +47,7 @@ class Game {
         var turn = 0
         // constante misteryTurn for the box appears on random turn
         let mysteryTurn = Int(arc4random_uniform(UInt32(1))) + 1
-        // variable for character up level (Bonus)
+        // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level, then at the third attack or heal for Mage
         var turnLevel = 0
         
         // Method for print characters opponent
@@ -112,6 +112,8 @@ class Game {
                 }
                 // Use an constante chooseCharacter for keep the choice
                 let chooseCharacter = selectCharacter(player: [players[i]])
+                // Use upLevel on chooseCharacter for character up level of 1
+                chooseCharacter.upLevel(turn: turnLevel)
                 
                 // Method for step 3, make appears a box in random turn
                 func mysteryBox() {
@@ -180,6 +182,11 @@ class Game {
                 if let mage = chooseCharacter as? Mage {
                     // Indicate at user what character he choose
                     print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+                    // If Mage is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                    if (mage.level == 3 && turnLevel == 3) || (mage.level == 6 && turnLevel == 3) {
+                        print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
+                        mage.blessing(players[i])
+                    }
                     // Use mysteryBox for make appears the box with bonus
                     mysteryBox()
                     print("\nHeal someone of your team (yourself is right) !")
@@ -195,6 +202,29 @@ class Game {
                     // If chooseCharacter is different of Mage (Warrior, Rogue, Giant)
                     // Indicate at user what character he choose
                     print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+                    // If Warrior is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                    if let warrior = chooseCharacter as? Warrior {
+                        if (warrior.level == 3 && turnLevel == 3) || (warrior.level == 6 && turnLevel == 3) {
+                            print("Ultimatum of \(chooseCharacter.name) : SPINNING BLADE !")
+                            warrior.spinningBlade(players[j])
+                        }
+                    }
+                    if let giant = chooseCharacter as? Giant {
+                        // If Giant is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                        if (giant.level == 3 && turnLevel == 3) || (giant.level == 6 && turnLevel == 3) {
+                            print("Ultimatum of \(chooseCharacter.name) : EARTHQUAKE !")
+                            giant.earthquake(players[j])
+                        }
+                    }
+                    if let rogue = chooseCharacter as? Rogue {
+                        // If Rogue is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                        if (rogue.level == 3 && turnLevel == 3) || (rogue.level == 6 && turnLevel == 3) {
+                            print("Ultimatum of \(chooseCharacter.name) : PUNISHMENT !")
+                            print("Giant: 35 damage\nOther: 25 damage")
+                            indexOpponentCharacters()
+                            rogue.punishment(players[j].team[Tools.answerInt()])
+                        }
+                    }
                     // Use mysteryBox for make appears the box with bonus
                     mysteryBox()
                     // use indexOpponnentCharacters() for show at user opponent characters
@@ -230,7 +260,7 @@ class Game {
                             players[0].team.remove(at: i)
                             // If the team of player 1 is empty then player 2 win
                             if players[0].team.isEmpty {
-                                print("\(players[1].name) win !\n")
+                                print("\(players[1].name) win in \(turn + 1) turns !\n")
                                 exit(0)
                             }
                         }
@@ -243,7 +273,7 @@ class Game {
                                 print("\(character.name) is dead !\n")
                                 players[1].team.remove(at: j)
                                 if players[1].team.isEmpty {
-                                    print("\(players[0].name) win !\n")
+                                    print("\(players[0].name) win in \(turn + 1) turns !\n")
                                     exit(0)
                                 }
                             }
