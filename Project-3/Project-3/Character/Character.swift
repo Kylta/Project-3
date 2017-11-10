@@ -11,7 +11,7 @@ import Foundation
 // Master class for characters
 
 class Character {
-    // Properties of class
+    // Properties of class Character
     
     // Name for character (String)
     var name: String

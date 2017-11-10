@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		46F16CC21FB5B84000235598 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CC11FB5B84000235598 /* main.swift */; };
 		46F16CCC1FB5B98400235598 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CCB1FB5B98400235598 /* Character.swift */; };
+		46F16CCE1FB5BCC600235598 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CCD1FB5BCC600235598 /* Warrior.swift */; };
+		46F16CD01FB5BCCF00235598 /* Giant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CCF1FB5BCCF00235598 /* Giant.swift */; };
+		46F16CD21FB5BCDC00235598 /* Rogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CD11FB5BCDC00235598 /* Rogue.swift */; };
+		46F16CD51FB5BCF100235598 /* Mage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CD41FB5BCF100235598 /* Mage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +31,10 @@
 		46F16CBE1FB5B84000235598 /* Project-3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Project-3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F16CC11FB5B84000235598 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		46F16CCB1FB5B98400235598 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		46F16CCD1FB5BCC600235598 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
+		46F16CCF1FB5BCCF00235598 /* Giant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giant.swift; sourceTree = "<group>"; };
+		46F16CD11FB5BCDC00235598 /* Rogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rogue.swift; sourceTree = "<group>"; };
+		46F16CD41FB5BCF100235598 /* Mage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				46F16CCB1FB5B98400235598 /* Character.swift */,
+				46F16CCD1FB5BCC600235598 /* Warrior.swift */,
+				46F16CCF1FB5BCCF00235598 /* Giant.swift */,
+				46F16CD11FB5BCDC00235598 /* Rogue.swift */,
+				46F16CD41FB5BCF100235598 /* Mage.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -131,6 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F16CCE1FB5BCC600235598 /* Warrior.swift in Sources */,
+				46F16CD21FB5BCDC00235598 /* Rogue.swift in Sources */,
+				46F16CD01FB5BCCF00235598 /* Giant.swift in Sources */,
+				46F16CD51FB5BCF100235598 /* Mage.swift in Sources */,
 				46F16CC21FB5B84000235598 /* main.swift in Sources */,
 				46F16CCC1FB5B98400235598 /* Character.swift in Sources */,
 			);
