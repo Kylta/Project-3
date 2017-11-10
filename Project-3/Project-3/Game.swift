@@ -34,7 +34,7 @@ class Game {
         for character in player.team {
             print("\(character.getInfos()) \n\(character.getType())\nWeapon: \(character.weapon.getInfos())\n")
         }
-        print("\n===============================\n")
+        print("\n==========================\n")
     }
     
     // static method stepTwo for characters fight
@@ -64,7 +64,6 @@ class Game {
             // Index return at 0
             x = 0
         }
-        
         // Method for select character and secure if user take out of range character
         func selectCharacter(player: [Player]) -> Character {
             // Variable chooseCharacter of type Character
@@ -92,7 +91,7 @@ class Game {
         
         // While the team of player 1 or player 2 is not empty, it loop.
         while !players[0].team.isEmpty || !players[1].team.isEmpty {
-            
+            print("Turn : \(turn)")
             // Loop in players
             for _ in players {
                 // variable x for increment index
