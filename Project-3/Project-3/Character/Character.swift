@@ -17,11 +17,14 @@ class Character {
     var name: String
     // Life for character (Int)
     var life: Int
+    // add class Weapon at class Character for character take weapon
+    var weapon: Weapon
     
     // Constructor
-    init(name: String, life: Int) {
+    init(name: String, life: Int, weapon: Weapon) {
     self.name = name
     self.life = life
+    self.weapon = weapon
     }
     
     // Get infos from class

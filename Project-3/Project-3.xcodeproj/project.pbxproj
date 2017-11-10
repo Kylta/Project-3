@@ -79,7 +79,7 @@
 			children = (
 				46F16CC11FB5B84000235598 /* main.swift */,
 				46F16CCA1FB5B97100235598 /* Character */,
-				46F16CD71FB5C19300235598 /* New Group */,
+				46F16CD71FB5C19300235598 /* Weapon */,
 			);
 			path = "Project-3";
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
-		46F16CD71FB5C19300235598 /* New Group */ = {
+		46F16CD71FB5C19300235598 /* Weapon */ = {
 			isa = PBXGroup;
 			children = (
 				46F16CD81FB5C1B200235598 /* Weapon.swift */,
@@ -105,7 +105,7 @@
 				46F16CDE1FB5C32C00235598 /* Dagger.swift */,
 				46F16CE01FB5C33100235598 /* Baton.swift */,
 			);
-			path = "New Group";
+			path = Weapon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
