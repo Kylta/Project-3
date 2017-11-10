@@ -10,6 +10,8 @@ import Foundation
 
 // class with tools for use it on other class like readline() for choose name for characters and others...
 class Tools {
+    // variable for stock name already taken by nameCharacter
+    static var names = [String]()
     
     // Method for user choose name on his characters
     static func nameCharacter() -> String {
@@ -17,9 +19,32 @@ class Tools {
         print("Pick a name !")
         // let answer with method readLine to interact with user
         let answer = readLine()
+        // constante for use method checkUniqueName in nameCharacter() for name of characters are unique
+        let unique = checkUniqueName(checkName: answer!)
         
+        // if unique == false we repeat nameCharacter() until name are unique
+        if !unique {
+            return nameCharacter()
+        }
         // We force unwrapped answer because  are sure there will be a string
         return answer!
+    }
+    
+    // Method for check if name is unique
+    static func checkUniqueName(checkName: String) -> Bool {
+        
+        // Check in the array names if name is already taken
+        for name in names {
+            // If the name is not unique it indicate at user than he has to choose a new name
+            if name == checkName {
+                
+                print("This name is already taken, try again !")
+                return false
+            }
+        }
+        // If name is not taken, then character or player can take the name, and we put the name in the array names
+        names.append(checkName)
+        return true
     }
     
     // Method for player to interact with him for he choose action with Int like 1,2,3,4...

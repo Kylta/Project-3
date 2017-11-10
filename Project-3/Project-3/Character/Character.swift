@@ -23,6 +23,7 @@ class Character {
     // Constructor
     
     convenience init() {
+        // Create Character with properties empty
         self.init(name: "", life: 0, weapon: Baton())
     }
     init(name: String, life: Int, weapon: Weapon) {
@@ -47,7 +48,7 @@ class Character {
         character.receiveDamage(damage: weapon.damage)
         
         // Indicate at user character has been attacked
-        print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).")
+        print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
     }
     
     // Method for character receive damage

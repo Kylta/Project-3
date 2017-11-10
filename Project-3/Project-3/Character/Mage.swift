@@ -64,6 +64,6 @@ class Mage: Character {
             }
         }
         // Indicate at user than Mage has heal character
-        print("\(name) heal \(character.name) of \(baton.heal) points of life with \(weapon.name) and now \(character.name) life is \(character.life).")
+        print("\(name) heal \(character.name) of \(baton.heal) points of life with \(weapon.name) and now \(character.name) life is \(character.life).\n")
     }
 }

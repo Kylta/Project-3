@@ -21,3 +21,5 @@ print("TEAM 1:")
 Game.stepOne()
 print("\nTEAM 2:")
 Game.stepOne()
+
+Game.stepTwo()
