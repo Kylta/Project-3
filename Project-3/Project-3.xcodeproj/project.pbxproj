@@ -20,6 +20,7 @@
 		46F16CE11FB5C33100235598 /* Baton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CE01FB5C33100235598 /* Baton.swift */; };
 		46F16CE31FB5D0CB00235598 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CE21FB5D0CB00235598 /* Tools.swift */; };
 		46F16CE51FB5D5DC00235598 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CE41FB5D5DC00235598 /* Player.swift */; };
+		46F16CE71FB5E0BE00235598 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16CE61FB5E0BE00235598 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		46F16CE01FB5C33100235598 /* Baton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baton.swift; sourceTree = "<group>"; };
 		46F16CE21FB5D0CB00235598 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		46F16CE41FB5D5DC00235598 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		46F16CE61FB5E0BE00235598 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				46F16CC11FB5B84000235598 /* main.swift */,
 				46F16CE21FB5D0CB00235598 /* Tools.swift */,
 				46F16CE41FB5D5DC00235598 /* Player.swift */,
+				46F16CE61FB5E0BE00235598 /* Game.swift */,
 				46F16CCA1FB5B97100235598 /* Character */,
 				46F16CD71FB5C19300235598 /* Weapon */,
 			);
@@ -181,6 +184,7 @@
 				46F16CD91FB5C1B200235598 /* Weapon.swift in Sources */,
 				46F16CD51FB5BCF100235598 /* Mage.swift in Sources */,
 				46F16CDB1FB5C32100235598 /* Sword.swift in Sources */,
+				46F16CE71FB5E0BE00235598 /* Game.swift in Sources */,
 				46F16CE11FB5C33100235598 /* Baton.swift in Sources */,
 				46F16CDF1FB5C32C00235598 /* Dagger.swift in Sources */,
 				46F16CC21FB5B84000235598 /* main.swift in Sources */,
