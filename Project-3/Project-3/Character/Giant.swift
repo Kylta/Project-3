@@ -19,8 +19,8 @@ class Giant: Character {
     // Constructor
     init() {
         // Name: (String), Life: 120, weapon: Mass (Damage: 5)
-        // Use "Giant" name before create readline() for user choose name
-        super.init(name: "Giant", life: 120, weapon: Mass())
+        // Use Tools.nameCharacter() for user choose name
+        super.init(name: Tools.nameCharacter(), life: 120, weapon: Mass())
     }
     
     // Rewriting of the function getType of the class mother

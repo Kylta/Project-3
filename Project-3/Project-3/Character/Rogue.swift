@@ -19,8 +19,8 @@ class Rogue: Character {
     // Constructor
     init() {
         // Name: (String), Life: 80, weapon: Dagger (Damage: 15)
-        // Use "Rogue" name before create readline() for user choose name
-        super.init(name: "Rogue", life: 80, weapon: Dagger())
+        // Use Tools.nameCharacter() for user choose name
+        super.init(name: Tools.nameCharacter(), life: 80, weapon: Dagger())
     }
     
     // Rewriting of the function getType of the class mother

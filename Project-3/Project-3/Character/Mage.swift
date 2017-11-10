@@ -19,8 +19,8 @@ class Mage: Character {
     // Constructor
     init() {
         // Name: (String), Life: 100, weapon: Baton (Heal: 7)
-        // Use "Mage" name before create readline() for user choose name
-        super.init(name: "Mage", life: 100, weapon: Baton())
+        // Use Tools.nameCharacter() for user choose name
+        super.init(name: Tools.nameCharacter(), life: 100, weapon: Baton())
     }
     
     // Rewriting of the function getType of the class mother
