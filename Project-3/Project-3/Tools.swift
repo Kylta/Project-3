@@ -55,6 +55,7 @@ class Tools {
         if let unwrappedReponse = reponse {
             /// unwrapped unwrappedReponse for he become type Int
             if let answerInt = Int(unwrappedReponse) {
+                
                 // if answerInt is an Int it return the number
                 return answerInt
             }

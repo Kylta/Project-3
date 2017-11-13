@@ -19,7 +19,7 @@ class Dagger: Weapon {
     // Constructor
     init() {
         // Name: (String), damage: 15
-        super.init(name: "Dagger", damage: 1)
+        super.init(name: "Dagger", damage: 150)
     }
     
     // override func for indicate at player what type of weapon he will choose
