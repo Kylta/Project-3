@@ -37,7 +37,7 @@ class Game {
     // Method of class
     func initializeGame() {
         for i in 0...1 {
-        print("PLAYER \(i)")
+        print("PLAYER \(i + 1)")
         // constante team for create new player
         let player = Player(name: Tools.nameCharacter())
         players.append(player)
@@ -68,14 +68,19 @@ class Game {
         // variable for know how many turns players play
         var turn = 0
         // constante misteryTurn for the box appears on random turn
-        let mysteryTurn = Int(arc4random_uniform(UInt32(1))) + 1
+        let mysteryTurn = Int(arc4random_uniform(UInt32(4))) + 1
         // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level, then at the third attack or heal for Mage
         var turnLevel = 0
+        
+        print(mysteryTurn)
         
         print(players[0].name + players[1].name)
         // While the team of player 1 or player 2 is not empty, it loop.
         while !players[0].team.isEmpty || !players[1].team.isEmpty {
+            
             print("Turn : \(turn)")
+            print("TurnLevel : \(turnLevel)")
+            
             // Loop in players
             for player in [players] {
                 // variable x for increment index
@@ -96,12 +101,10 @@ class Game {
                 
                 // Use an constante chooseCharacter for keep the choice
                 let chooseCharacter = Game().selectCharacter(player: [player[i]])
+                
                 // Use upLevel on chooseCharacter for character up level of 1
                 chooseCharacter.upLevel(turn: turnLevel)
                 
-                if turn == mysteryTurn {
-                    Game().mysteryBox()
-                }
                 
                 // if chooseCharacter is Mage
                 if let mage = chooseCharacter as? Mage {
@@ -113,7 +116,9 @@ class Game {
                         mage.blessing(players[i])
                     }
                     // Use mysteryBox for make appears the box with bonus
-                    Game().mysteryBox()
+                    if turn == mysteryTurn {
+                        Game().mysteryBox()
+                    }
                     print("\nHeal someone of your team (yourself is right) !")
                     // Loop for have index + name & type of characters
                     for character in players[i].team {
@@ -146,14 +151,16 @@ class Game {
                         if (rogue.level == 3 && turnLevel == 3) || (rogue.level == 6 && turnLevel == 3) {
                             print("Ultimatum of \(chooseCharacter.name) : PUNISHMENT !")
                             print("Giant: 35 damage\nOther: 25 damage")
-                            Game().indexOpponentCharacters()
+                            Game().indexOpponentCharacters(player: [player[j]])
                             rogue.punishment(players[j].team[Tools.answerInt()])
                         }
                     }
                     // Use mysteryBox for make appears the box with bonus
-                    Game().mysteryBox()
+                    if turn == mysteryTurn {
+                        Game().mysteryBox()
+                    }
                     // use indexOpponnentCharacters() for show at user opponent characters
-                    Game().indexOpponentCharacters()
+                    Game().indexOpponentCharacters(player: [player[j]])
                     // Then he choose pour attack an opponent character
                     chooseCharacter.attack(Game().selectCharacter(player: [players[j]]))
                 }
@@ -206,20 +213,24 @@ class Game {
                         }
                     }
                 }
-                }
             }
             // Increment of turn of 1
             turn += 1
             turnLevel += 1
         }
+    }
     
     
     // Method for step 3, make appears a box in random turn
     func mysteryBox() {
-        let chooseCharacter = Game().selectCharacter(player: players)
+        
+        // Use an constante chooseCharacter for keep the choice
+        let chooseCharacter = Character()
+
         /* In the box players have 2 option, 1: takes Super Weapon +5 damage for damager or +5 heal for mage or 2: takes armor and reduce damage opponent -3 points of damage (if they take out of range 1...2 then they lost bonus !) */
         print("\n==== MYSTERY BOX ===\nThere is a mystery box, you have 1 choice for 2 options.\n1: Super weapon (damage +5) if Mage: (heal +5)\n2: Armor (reduce -3 opponent damage)\n=== Take your choice ! ===")
         // Explain above !
+        
         if let warrior = chooseCharacter as? Warrior {
             switch Tools.answerInt() {
             case 1:
@@ -285,7 +296,7 @@ class Game {
         repeat {
             // We use variable choice for it use Tools.answerInt() for user choose characters
             choice = Tools.answerInt()
-            
+
             // Check if choice is in the index of team
             if player[0].team.indices.contains(choice) {
                 chooseCharacter = player[0].team[choice]
@@ -300,13 +311,12 @@ class Game {
     }
     
     // Method for print characters opponent
-    func indexOpponentCharacters() {
-        let players = Game().players
+    func indexOpponentCharacters(player: [Player]) {
         // variable x for increment index
         var x = 0
         // Indicate at player character index opponent with infos
         print("\nAdverse character to target !")
-        for character in players[1].team {
+        for character in player[0].team {
             print("\(x) = \(character.name) as \(character.getType()) and had \(character.life) points of life !")
             // We increment index
             x += 1

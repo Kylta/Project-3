@@ -8,16 +8,12 @@
 
 import Foundation
 
-let intro = Game()
-intro.intro()
-
-let initializeGame = Game()
-initializeGame.initializeGame()
+let newGame = Game()
+newGame.intro()
+newGame.initializeGame()
 
 print("     ===============")
 print("     |    FIGHT    |")
 print("     ===============\n")
 
-let fight = Game()
-fight.stepTwo()
-
+newGame.stepTwo()
