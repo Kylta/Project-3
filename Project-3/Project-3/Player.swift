@@ -56,6 +56,30 @@ class Player {
                     print("Choose a number between 1 and 4.\nI don't understand !")
                     }
                 } while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4) // While player isn't in the range between 1..4 it repeat
+        }
+    }
+    
+    // Method for select character and secure if user take out of range character
+    func selectCharacter(player: Player) -> Character {
+        // Variable chooseCharacter of type Character
+        var chooseCharacter = Character()
+        // Initalise variable choice
+        var choice = 0
+        
+        repeat {
+            // We use variable choice for it use Tools.answerInt() for user choose characters
+            choice = Tools.answerInt()
+            
+            // Check if choice is in the index of team
+            if player.team.indices.contains(choice) {
+                chooseCharacter = player.team[choice]
+                // but if he choose a number out of index, it ask him to try again
+            } else {
+                print("You are out of range, try again !")
             }
+            // while player take an indice out of index, it loop
+        } while !player.team.indices.contains(choice)
+        // Then if he choose in index it choose character
+        return chooseCharacter
     }
 }

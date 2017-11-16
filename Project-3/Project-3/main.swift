@@ -16,4 +16,4 @@ print("     ===============")
 print("     |    FIGHT    |")
 print("     ===============\n")
 
-newGame.stepTwo()
+newGame.fight()
