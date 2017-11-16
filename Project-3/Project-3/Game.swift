@@ -65,19 +65,16 @@ class Game {
         let mysteryTurn = Int(arc4random_uniform(UInt32(4))) + 1
         // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level, then at the third attack or heal for Mage
         var turnLevel = 0
-        
+        // variable for attacker player
         var attackingPlayer = players[0]
-        
+        // variable for defender player
         var defendingPlayer = players[1]
         
         // While the team of player 1 or player 2 is not empty, it loop.
         while !players[0].team.isEmpty || !players[1].team.isEmpty {
-            
             print("Turn : \(turn)")
-
                 // variable x for increment index
                 var x = 0
-                
                 // print the name of player for he choose characters
                 print("\(attackingPlayer.name) choose your character:")
                 // Loop in the team of player for print them name & type (Rogue, Mage, Warrior, Giant)
@@ -91,7 +88,7 @@ class Game {
                     turnLevel = 1
                 }
                 
-                // Use an constante chooseCharacter for keep the choice
+                // Use an constante chooseCharacter for keep the choice of users
                 let chooseCharacter = attackingPlayer.selectCharacter(player: attackingPlayer)
                 
                 // Use upLevel on chooseCharacter for character up level of 1
@@ -154,10 +151,10 @@ class Game {
                     }
                     // use indexOpponnentCharacters() for show at user opponent characters
                     indexOpponentCharacters(player: defendingPlayer)
-                    // Then he choose pour attack an opponent character
+                    // Then he choose for attack an opponent character
                     chooseCharacter.attack(defendingPlayer.selectCharacter(player: defendingPlayer))
             }
-            
+            // up turn & turnLevel when attackPlayer has be count 2 times
             if attackingPlayer === players[1] {
                     turn += 1
                     turnLevel += 1
@@ -165,41 +162,43 @@ class Game {
                 
                 // Loop in players
                 for _ in players {
-                // variable i for increment characters in team
+                // variable i for increment characters in player 1
                 var i = 0
+                // variable j for encrement charaters in player 2
                 var j = 0
                     
-                    // we check character in player 1
-                    for character in attackingPlayer.team {
-                        // If the life of character = 0, then character is dead
-                        if character.life == 0 {
-                            // We indicate at player character is dead
-                            print("\(character.name) is dead !\n")
-                            // So we remove character of array
-                            attackingPlayer.team.remove(at: i)
-                            // If the team of player 1 is empty then player 2 win
-                            if attackingPlayer.team.isEmpty {
-                                print("\(defendingPlayer.name) win in \(turn + 1) turns !\n")
-                                exit(0)
-                            }
+                // we check character life in player 1
+                for character in attackingPlayer.team {
+                    // If the life of character = 0, then character is dead
+                    if character.life == 0 {
+                        // We indicate at player character is dead
+                        print("\(character.name) is dead !\n")
+                        // So we remove character of array
+                        attackingPlayer.team.remove(at: i)
+                        // If the team of player 1 is empty then player 2 win
+                        if attackingPlayer.team.isEmpty {
+                            print("\(defendingPlayer.name) win in \(turn + 1) turns !\n")
+                            exit(0)
                         }
-                        // We increment of 1 for check all characters in team
-                        i += 1
-                    
-                        // Similar that above
-                        for character in defendingPlayer.team {
-                            if character.life == 0 {
-                                print("\(character.name) is dead !\n")
-                                defendingPlayer.team.remove(at: j)
-                                if defendingPlayer.team.isEmpty {
-                                    print("\(attackingPlayer.name) win in \(turn + 1) turns !\n")
-                                    exit(0)
-                            }
-                        }
-                        j += 1
                     }
+                    // We increment of 1 for check all characters in team
+                    i += 1
+                }
+                    
+                // Similar that above for player 2
+                for character in defendingPlayer.team {
+                    if character.life == 0 {
+                        print("\(character.name) is dead !\n")
+                        defendingPlayer.team.remove(at: j)
+                        if defendingPlayer.team.isEmpty {
+                                print("\(attackingPlayer.name) win in \(turn + 1) turns !\n")
+                                exit(0)
+                        }
+                    }
+                    j += 1
                 }
             }
+        // Swap between player 1 & player 2
         swap(&attackingPlayer,&defendingPlayer)
         }
     }
