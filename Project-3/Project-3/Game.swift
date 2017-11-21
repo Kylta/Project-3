@@ -62,7 +62,7 @@ class Game {
         // variable for know how many turns players play
         var turn = 0
         // constante misteryTurn for the box appears on random turn
-        let mysteryTurn = Int(arc4random_uniform(UInt32(4))) + 1
+        let mysteryTurn = Int(arc4random_uniform(UInt32(1))) + 1
         // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level, then at the third attack or heal for Mage
         var turnLevel = 0
         // variable for attacker player
@@ -94,115 +94,107 @@ class Game {
                 // Use upLevel on chooseCharacter for character up level of 1
                 chooseCharacter.upLevel(turn: turnLevel)
                 
-                
-                // if chooseCharacter is Mage
-                if let mage = chooseCharacter as? Mage {
-                    // Indicate at user what character he choose
-                    print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
-                    // If Mage is level 3 or level 6 then he activate Ultimatum (passif) Bonus
-                    if (mage.level == 3 && turnLevel == 3) || (mage.level == 6 && turnLevel == 3) {
-                        print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
-                        mage.blessing(attackingPlayer)
-                    }
-                    // Use mysteryBox for make appears the box with bonus
-                    if turn == mysteryTurn {
-                        mysteryBox(character: chooseCharacter)
-                    }
-                    print("\nHeal someone of your team (yourself is right) !")
-                    // Loop for have index + name & type of characters
-                    for character in attackingPlayer.team {
-                        print("\(x) = \(character.name) as \(character.getType())")
-                        x += 1
-                    }
-                    x = 0
-                    // Then he choose for heal someone of his team
-                    let characterHeal = attackingPlayer.selectCharacter(player: attackingPlayer)
-                    mage.heal(characterHeal)
-                } else {
-                    // If chooseCharacter is different of Mage (Warrior, Rogue, Giant)
-                    // Indicate at user what character he choose
-                    print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
-                    // If Warrior is level 3 or level 6 then he activate Ultimatum (passif) Bonus
-                    if let warrior = chooseCharacter as? Warrior {
-                        if (warrior.level == 3 && turnLevel == 3) || (warrior.level == 6 && turnLevel == 3) {
-                            print("Ultimatum of \(chooseCharacter.name) : SPINNING BLADE !")
-                            warrior.spinningBlade(defendingPlayer)
-                        }
-                    }
-                    if let giant = chooseCharacter as? Giant {
-                        // If Giant is level 3 or level 6 then he activate Ultimatum (passif) Bonus
-                        if (giant.level == 3 && turnLevel == 3) || (giant.level == 6 && turnLevel == 3) {
-                            print("Ultimatum of \(chooseCharacter.name) : EARTHQUAKE !")
-                            giant.earthquake(defendingPlayer)
-                        }
-                    }
-                    if let rogue = chooseCharacter as? Rogue {
-                        // If Rogue is level 3 or level 6 then he activate Ultimatum (passif) Bonus
-                        if (rogue.level == 3 && turnLevel == 3) || (rogue.level == 6 && turnLevel == 3) {
-                            print("Ultimatum of \(chooseCharacter.name) : PUNISHMENT !")
-                            print("Giant: 35 damage\nOther: 25 damage")
-                            indexOpponentCharacters(player: defendingPlayer)
-                            rogue.punishment(defendingPlayer.team[Tools.answerInt()])
-                        }
-                    }
-                    // Use mysteryBox for make appears the box with bonus
-                    if turn == mysteryTurn {
-                        mysteryBox(character: chooseCharacter)
-                    }
-                    // use indexOpponnentCharacters() for show at user opponent characters
-                    indexOpponentCharacters(player: defendingPlayer)
-                    // Then he choose for attack an opponent character
-                    chooseCharacter.attack(defendingPlayer.selectCharacter(player: defendingPlayer))
-            }
+            // Use method classCharacter
+                classCharacter(chooseCharacter: chooseCharacter, attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn, turnLevel: turnLevel, mysteryTurn: mysteryTurn)
             // up turn & turnLevel when attackPlayer has be count 2 times
             if attackingPlayer === players[1] {
-                    turn += 1
-                    turnLevel += 1
+                turn += 1
+                turnLevel += 1
             }
                 
-                // Loop in players
-                for _ in players {
-                // variable i for increment characters in player 1
-                var i = 0
-                // variable j for encrement charaters in player 2
-                var j = 0
-                    
-                // we check character life in player 1
-                for character in attackingPlayer.team {
-                    // If the life of character = 0, then character is dead
-                    if character.life == 0 {
-                        // We indicate at player character is dead
-                        print("\(character.name) is dead !\n")
-                        // So we remove character of array
-                        attackingPlayer.team.remove(at: i)
-                        // If the team of player 1 is empty then player 2 win
-                        if attackingPlayer.team.isEmpty {
-                            print("\(defendingPlayer.name) win in \(turn + 1) turns !\n")
-                            exit(0)
-                        }
-                    }
-                    // We increment of 1 for check all characters in team
-                    i += 1
-                }
-                    
-                // Similar that above for player 2
-                for character in defendingPlayer.team {
-                    if character.life == 0 {
-                        print("\(character.name) is dead !\n")
-                        defendingPlayer.team.remove(at: j)
-                        if defendingPlayer.team.isEmpty {
-                                print("\(attackingPlayer.name) win in \(turn + 1) turns !\n")
-                                exit(0)
-                        }
-                    }
-                    j += 1
-                }
-            }
+            // Method for check life characters and remove character if life = 0
+            deathPlayer(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
+            
         // Swap between player 1 & player 2
         swap(&attackingPlayer,&defendingPlayer)
         }
     }
     
+    func classCharacter(chooseCharacter: Character, attackingPlayer: Player, defendingPlayer: Player, turn: Int, turnLevel: Int, mysteryTurn: Int) {
+        var x = 0
+        
+        if let mage = chooseCharacter as? Mage {
+            // Indicate at user what character he choose
+            print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+            // If Mage is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+            if (mage.level == 3 && turnLevel == 3) || (mage.level == 6 && turnLevel == 3) {
+                print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
+                mage.blessing(attackingPlayer)
+            }
+            // Use mysteryBox for make appears the box with bonus
+            if turn == mysteryTurn {
+                mysteryBox(character: chooseCharacter)
+            }
+            print("\nHeal someone of your team (yourself is right) !")
+            // Loop for have index + name & type of characters
+            for character in attackingPlayer.team {
+                print("\(x) = \(character.name) as \(character.getType())")
+                x += 1
+            }
+            x = 0
+            // Then he choose for heal someone of his team
+            let characterHeal = attackingPlayer.selectCharacter(player: attackingPlayer)
+            mage.heal(characterHeal)
+        } else {
+            // If chooseCharacter is different of Mage (Warrior, Rogue, Giant)
+            // Indicate at user what character he choose
+            print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
+            // If Warrior is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+            if let warrior = chooseCharacter as? Warrior {
+                if (warrior.level == 3 && turnLevel == 3) || (warrior.level == 6 && turnLevel == 3) {
+                    print("Ultimatum of \(chooseCharacter.name) : SPINNING BLADE !")
+                    warrior.spinningBlade(defendingPlayer)
+                }
+            }
+            if let giant = chooseCharacter as? Giant {
+                // If Giant is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                if (giant.level == 3 && turnLevel == 3) || (giant.level == 6 && turnLevel == 3) {
+                    print("Ultimatum of \(chooseCharacter.name) : EARTHQUAKE !")
+                    giant.earthquake(defendingPlayer)
+                }
+            }
+            if let rogue = chooseCharacter as? Rogue {
+                // If Rogue is level 3 or level 6 then he activate Ultimatum (passif) Bonus
+                if (rogue.level == 3 && turnLevel == 3) || (rogue.level == 6 && turnLevel == 3) {
+                    print("Ultimatum of \(chooseCharacter.name) : PUNISHMENT !")
+                    print("Giant: 35 damage\nOther: 25 damage")
+                    indexOpponentCharacters(player: defendingPlayer)
+                    rogue.punishment(defendingPlayer.team[Tools.answerInt()])
+                }
+            }
+            // Use mysteryBox for make appears the box with bonus
+            if turn == mysteryTurn {
+                mysteryBox(character: chooseCharacter)
+            }
+            // use indexOpponnentCharacters() for show at user opponent characters
+            indexOpponentCharacters(player: defendingPlayer)
+            // Then he choose for attack an opponent character
+            chooseCharacter.attack(defendingPlayer.selectCharacter(player: defendingPlayer))
+        }
+
+    }
+    
+    func deathPlayer(attackingPlayer: Player, defendingPlayer: Player, turn: Int) {
+        var i = 0
+        
+        for characters in defendingPlayer.team {
+            
+            // If the life of character = 0, then character is dead
+            if characters.life == 0 {
+                // We indicate at player character is dead
+                print("\(characters.name) is dead !\n")
+                // So we remove character of array
+                defendingPlayer.team.remove(at: i)
+                // If the team of player 1 is empty then player 2 win
+                if defendingPlayer.team.isEmpty {
+                    print("\(attackingPlayer.name) win in \(turn + 1) turns !\n")
+                    exit(0)
+                    }
+                }
+                // We increment of 1 for check all characters in team
+                i += 1
+            }
+    }
     
     // Method for step 3, make appears a box in random turn
     func mysteryBox(character: Character) {

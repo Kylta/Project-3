@@ -48,12 +48,7 @@ class Character {
     // Method for characters attack
     func attack(_ character: Character) {
         // Use on character the method receiveDamage for put the damage of the weapon init at characters
-        character.life -= weapon.damage
-        
-         // If character life is under 0, life = 0. Then life can't be under 0.
-        if character.life <= 0 {
-            character.life = 0
-        }
+        character.receiveDamage(damage: weapon.damage)
         
         // Indicate at user character has been attacked
         print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
