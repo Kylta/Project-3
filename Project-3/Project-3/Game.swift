@@ -18,12 +18,12 @@ class Game {
     
     func intro() {
         print("""
-    =========================================
-    |         WELCOME IN THE GAME !         |
-    |Each players has to choose 3 characters|
-    |     to win against the opponent !     |
-    |              GOOD LUCK !              |
-    =========================================\n
+               =========================================
+               |         WELCOME IN THE GAME !         |
+               |Each players has to choose 3 characters|
+               |     to win against the opponent !     |
+               |              GOOD LUCK !              |
+               =========================================\n
 
                                 BONUS:
     Mage: Blessing (heal all characters of his team +10 points of life (Level 3 and 6)
@@ -69,7 +69,11 @@ class Game {
         var attackingPlayer = players[0]
         // variable for defender player
         var defendingPlayer = players[1]
-        
+        print("""
+             ===============
+             |    FIGHT    |
+             ===============\n
+        """)
         // While the team of player 1 or player 2 is not empty, it loop.
         while !players[0].team.isEmpty || !players[1].team.isEmpty {
             print("Turn : \(turn)")
@@ -95,7 +99,7 @@ class Game {
                 chooseCharacter.upLevel(turn: turnLevel)
                 
             // Use method classCharacter
-                classCharacter(chooseCharacter: chooseCharacter, attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn, turnLevel: turnLevel, mysteryTurn: mysteryTurn)
+                fightClassCharacter(chooseCharacter: chooseCharacter, attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn, turnLevel: turnLevel, mysteryTurn: mysteryTurn)
             // up turn & turnLevel when attackPlayer has be count 2 times
             if attackingPlayer === players[1] {
                 turn += 1
@@ -103,16 +107,16 @@ class Game {
             }
                 
             // Method for check life characters and remove character if life = 0
-            deathPlayer(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
+            deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
             
         // Swap between player 1 & player 2
         swap(&attackingPlayer,&defendingPlayer)
         }
     }
-    
-    func classCharacter(chooseCharacter: Character, attackingPlayer: Player, defendingPlayer: Player, turn: Int, turnLevel: Int, mysteryTurn: Int) {
+    // Method because depend from character (Bonus, mage etc...)
+    func fightClassCharacter(chooseCharacter: Character, attackingPlayer: Player, defendingPlayer: Player, turn: Int, turnLevel: Int, mysteryTurn: Int) {
         var x = 0
-        
+
         if let mage = chooseCharacter as? Mage {
             // Indicate at user what character he choose
             print("You choose \(chooseCharacter.name) (\(chooseCharacter.getType()))")
@@ -171,10 +175,10 @@ class Game {
             // Then he choose for attack an opponent character
             chooseCharacter.attack(defendingPlayer.selectCharacter(player: defendingPlayer))
         }
-
     }
     
-    func deathPlayer(attackingPlayer: Player, defendingPlayer: Player, turn: Int) {
+    // Method if character life = 0 then remove character from array
+    func deathCharacter(attackingPlayer: Player, defendingPlayer: Player, turn: Int) {
         var i = 0
         
         for characters in defendingPlayer.team {
@@ -195,7 +199,7 @@ class Game {
                 i += 1
             }
     }
-    
+
     // Method for step 3, make appears a box in random turn
     func mysteryBox(character: Character) {
 
@@ -212,7 +216,8 @@ class Game {
                 print("Warrior now has armor !\nNow attack opponent !")
                 warrior.receiveDamage(damage: -3)
             default:
-                print("You choose nothing !")
+                print("You choose nothing, pick a number for 1 to 2 !")
+                mysteryBox(character: warrior)
             }
         }
         // Explain above !
@@ -225,7 +230,8 @@ class Game {
                 print("Giant now has armor !\nNow attack opponent !")
                 giant.receiveDamage(damage: -3)
             default:
-                print("You choose nothing !")
+                print("You choose nothing, pick a number for 1 to 2 !")
+                mysteryBox(character: giant)
             }
         }
         // Explain above !
@@ -238,7 +244,8 @@ class Game {
                 print("Rogue now has armor !\nNow attack opponent !")
                 rogue.receiveDamage(damage: -3)
             default:
-                print("You choose nothing !")
+                print("You choose nothing, pick a number for 1 to 2 !")
+                mysteryBox(character: rogue)
             }
         }
         // Explain above !
@@ -253,7 +260,8 @@ class Game {
                 print("Mage now has armor !\nNow attack opponent !")
                 mage.receiveDamage(damage: -3)
             default:
-                print("You choose nothing !")
+                print("You choose nothing, pick a number for 1 to 2 !")
+                mysteryBox(character: mage)
             }
         }
     }

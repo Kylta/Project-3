@@ -11,9 +11,4 @@ import Foundation
 let newGame = Game()
 newGame.intro()
 newGame.initializeGame()
-
-print("     ===============")
-print("     |    FIGHT    |")
-print("     ===============\n")
-
 newGame.fight()
