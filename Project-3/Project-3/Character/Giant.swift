@@ -32,23 +32,13 @@ class Giant: Character {
         return classe + type
     }
     
-    // Method for ultimatum Giant (BONUS)
     func earthquake(_ character: Player) {
         // Made 10 damages at all opponent characters
         let randomEarthquake = Int(arc4random_uniform(30) + 15)
         
         for characters in character.team {
-            let characterArmor = characters.armor
-            if characters.armor > 1 {
-                characters.armor -= randomEarthquake
-                
-                if characters.armor < 0 {
-                    characters.armor = 0
-                    characters.life -= (randomEarthquake - characterArmor)
-                    print("\(characters.name) take \(randomEarthquake) damage, lost \(characterArmor) armor and now \(characters.name) is \(characters.life) life!")
-                } else {
-                    print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) armor is \(characters.armor).\n")
-                }
+            if characters.armor >= 1 {
+                reduceArmore(character: characters, damage: randomEarthquake)
             } else {
                 print("\(characters.name) takes \(randomEarthquake) damage and now \(characters.name) life is \(characters.life - randomEarthquake)!")
             }

@@ -23,7 +23,7 @@ class Character {
     var level: Int
     //
     var armor : Int
-    
+    //
     var maxLife: Int
     
     // Constructor
@@ -33,12 +33,12 @@ class Character {
     }
     
     init(name: String, life: Int, weapon: Weapon, level: Int, maxLife: Int) {
-    self.name = name
-    self.life = life
-    self.weapon = weapon
-    self.level = level
-    self.armor = 0
-    self.maxLife = maxLife
+        self.name = name
+        self.life = life
+        self.weapon = weapon
+        self.level = level
+        self.armor = 0
+        self.maxLife = maxLife
     }
     
     // Get infos from class
@@ -53,20 +53,9 @@ class Character {
     
     // Method for characters attack
     func attack(_ character: Character) {
-        // Remove life of damage put in setting
-        let weaponDamage = weapon.damage
-        let characterArmor = character.armor
         
         if character.armor > 1 {
-            character.armor -= weaponDamage
-            
-            if character.armor < 0 {
-                character.armor = 0
-                character.life -= (weaponDamage - characterArmor)
-                print("\(character.name) take \(weapon.damage) damage, his armor absorb \(characterArmor) damage and take \(weapon.damage - characterArmor) damage !")
-            } else {
-                print("\(self.name) made \(weapon.damage) damage at \(character.name) and now \(character.name) armor is \(character.armor).\n")
-            }
+            reduceArmore(character: character, damage: weapon.damage)
         } else {
             character.life -= weapon.damage
             // If the life is under 0, life = 0. Then life can't be under 0.
@@ -75,7 +64,24 @@ class Character {
             }
             print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
         }
-        // Indicate at user character has been attacked
+    }
+    
+    // Indicate at user character has been attacked
+    func reduceArmore(character: Character, damage: Int) {
+        let weaponDamage = damage
+        let characterArmor = character.armor
+        
+        if character.armor >= 1 {
+            character.armor -= weaponDamage
+            
+            if character.armor <= 0 {
+                character.armor = 0
+                character.life -= (weaponDamage - characterArmor)
+                print("\(character.name) take \(damage) damage, his armor absorb \(characterArmor) damage and \(character.name) take \(damage - characterArmor) damage ! Now \(character.name) had \(character.life) points of life !")
+            } else {
+                print("\(self.name) made \(damage) damage at \(character.name) and now \(character.name) armor is \(character.armor).\n")
+            }
+        }
     }
     
     // Method for character up level
@@ -115,7 +121,6 @@ class Character {
                 return randomVal
             }
         }
-        
         return randomVal
     }
 }

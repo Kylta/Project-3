@@ -37,36 +37,18 @@ class Rogue: Character {
         // If opponent charater is a Giant then damage = 35
         if character is Giant {
             let randomPunishment = Int(arc4random_uniform(60) + 20)
-            let characterArmor = character.armor
             
-            if character.armor > 1 {
-                character.armor -= randomPunishment
-                
-                if character.armor < 0 {
-                    character.armor = 0
-                    character.life -= (randomPunishment - characterArmor)
-                    print("\(character.name) take \(randomPunishment) damage, his armor absorb \(characterArmor) damage and take \(randomPunishment - characterArmor) damage !")
-                } else {
-                    print("\(self.name) made \(randomPunishment) damage at \(character.name) with PUNISHMENT and now \(character.name) armor is \(character.armor).\n")
-                }
+            if character.armor >= 1 {
+                reduceArmore(character: character, damage: randomPunishment)
             } else {
                 character.life -= randomPunishment
                 print("\(character.name) takes \(randomPunishment) damage and now \(character.name) had \(character.life) point of life !")
             }
         } else {
             let randomPunishment = Int(arc4random_uniform(40) + 10)
-            let characterArmor = character.armor
             
-            if character.armor > 1 {
-                character.armor -= randomPunishment
-                
-                if character.armor < 0 {
-                    character.armor = 0
-                    character.life -= (randomPunishment - characterArmor)
-                    print("\(character.name) take \(randomPunishment) damage, his armor absorb \(characterArmor) damage and take \(randomPunishment - characterArmor) damage !")
-                } else {
-                    print("\(self.name) made \(randomPunishment) damage at \(character.name) with PUNISHMENT and now \(character.name) armor is \(character.armor).\n")
-                }
+            if character.armor >= 1 {
+                reduceArmore(character: character, damage: randomPunishment)
             } else {
                 character.life -= randomPunishment
                 print("\(character.name) takes \(randomPunishment) damage, and now \(character.name) had \(character.life) point of life !")

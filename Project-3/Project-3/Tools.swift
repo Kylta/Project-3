@@ -19,7 +19,7 @@ class Tools {
         print("Pick a name !")
         // let answer with method readLine to interact with user
         let answer = readLine()
-
+        
         var isInt: Bool {
             return Int(answer!) != nil
         }
@@ -71,7 +71,7 @@ class Tools {
         // return method answerInt until it be an Int
         return answerInt()
     }
-
+    
     
     static func randomNumber() -> Int {
         

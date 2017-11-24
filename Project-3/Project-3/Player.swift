@@ -23,8 +23,8 @@ class Player {
     }
     
     // Method for player create his team
-   func createTeam() {
-    
+    func createTeam() {
+        
         // repeat while array team contains 3 characters
         while team.count < 3 {
             print("\nMake a choice !")
@@ -35,27 +35,27 @@ class Player {
                 // constante for keep the choice of user in Tools.answerInt()
                 userChoice = Tools.answerInt()
                 // We switch userChoice, if user make choice 1 he will pick warrior, 2: giant etc...
-                    switch userChoice {
-                    case 1:
-                        print("You choose Warrior")
-                        let warrior = Warrior()
-                        team.append(warrior)
-                    case 2:
-                        print("You choose Giant")
-                        let giant = Giant()
-                        team.append(giant)
-                    case 3:
-                        print("You choose Rogue")
-                        let rogue = Rogue()
-                        team.append(rogue)
-                    case 4:
-                        print("You choose Mage")
-                        let mage = Mage()
-                        team.append(mage)
-                    default:
+                switch userChoice {
+                case 1:
+                    print("You choose Warrior")
+                    let warrior = Warrior()
+                    team.append(warrior)
+                case 2:
+                    print("You choose Giant")
+                    let giant = Giant()
+                    team.append(giant)
+                case 3:
+                    print("You choose Rogue")
+                    let rogue = Rogue()
+                    team.append(rogue)
+                case 4:
+                    print("You choose Mage")
+                    let mage = Mage()
+                    team.append(mage)
+                default:
                     print("Choose a number from 1 to 4.\nI don't understand !")
-                    }
-                } while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4) // While player isn't in the range between 1..4 it repeat
+                }
+            } while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4) // While player isn't in the range between 1..4 it repeat
         }
     }
     
