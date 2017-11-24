@@ -10,17 +10,37 @@ import Foundation
 
 // Master class for weapons
 class Weapon {
+    
+    enum WeaponType {
+        case Sword, Mass, Dagger, Baton, Hands
+    }
     // Properties of class Weapon
     
     // Name for weapon (String)
     var name: String
     // Damage for weapon (Int)
     var damage: Int
+    //
+    var type: WeaponType
+    //
+    var heal: Int?
     
     // Constructor
-    init(name: String, damage: Int) {
+    
+    convenience init() {
+        self.init(name: "", damage: 0, type: .Hands)
+    }
+    
+    init(name: String, damage: Int, type: WeaponType) {
         self.name = name
         self.damage = damage
+        self.type = type
+    }
+    init(name: String, damage: Int, heal: Int, type: WeaponType) {
+        self.name = name
+        self.heal = heal
+        self.damage = damage
+        self.type = type
     }
 
     // func for give infos at user of weapon
@@ -28,3 +48,4 @@ class Weapon {
         return " \(damage) damage"
     }
 }
+

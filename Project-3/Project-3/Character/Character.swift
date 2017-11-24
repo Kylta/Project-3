@@ -21,18 +21,24 @@ class Character {
     var weapon: Weapon
     // Level of character (BONUS)
     var level: Int
+    //
+    var armor : Int
+    
+    var maxLife: Int
     
     // Constructor
-    
     convenience init() {
         // Create Character with properties empty
-        self.init(name: "", life: 0, weapon: Baton(), level: 0)
+        self.init(name: "", life: 0, weapon: Weapon(name: "", damage: 0, type: .Hands), level: 0, maxLife: 0)
     }
-    init(name: String, life: Int, weapon: Weapon, level: Int) {
+    
+    init(name: String, life: Int, weapon: Weapon, level: Int, maxLife: Int) {
     self.name = name
     self.life = life
     self.weapon = weapon
     self.level = level
+    self.armor = 0
+    self.maxLife = maxLife
     }
     
     // Get infos from class
@@ -47,22 +53,29 @@ class Character {
     
     // Method for characters attack
     func attack(_ character: Character) {
-        // Use on character the method receiveDamage for put the damage of the weapon init at characters
-        character.receiveDamage(damage: weapon.damage)
-        
-        // Indicate at user character has been attacked
-        print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
-    }
-    
-    // Method for character receive damage
-    func receiveDamage(damage: Int) {
         // Remove life of damage put in setting
-        life -= damage
+        let weaponDamage = weapon.damage
+        let characterArmor = character.armor
         
-        // If the life is under 0, life = 0. Then life can't be under 0.
-        if life < 0 {
-            life = 0
+        if character.armor > 1 {
+            character.armor -= weaponDamage
+            
+            if character.armor < 0 {
+                character.armor = 0
+                character.life -= (weaponDamage - characterArmor)
+                print("\(character.name) take \(weapon.damage) damage, his armor absorb \(characterArmor) damage and take \(weapon.damage - characterArmor) damage !")
+            } else {
+                print("\(self.name) made \(weapon.damage) damage at \(character.name) and now \(character.name) armor is \(character.armor).\n")
+            }
+        } else {
+            character.life -= weapon.damage
+            // If the life is under 0, life = 0. Then life can't be under 0.
+            if character.life < 0 {
+                character.life = 0
+            }
+            print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
         }
+        // Indicate at user character has been attacked
     }
     
     // Method for character up level
@@ -71,6 +84,39 @@ class Character {
             self.level += 1
             print("\(self.name) up level \(self.level) !")
         }
+    }
+    
+    func newWeapons(character: Character) -> Weapon {
+        
+        let previousWeapon = Weapon()
+        
+        var newWeapons = [
+            Weapon(name: "Super Sword", damage: Int(arc4random_uniform(26) + 15), type: .Sword),
+            Weapon(name: "Cartoon Sword", damage: Int(arc4random_uniform(6) + 1), type: .Sword),
+            Weapon(name: "Sword", damage: 10, type: .Sword),
+            Weapon(name: "Super Mass", damage: Int(arc4random_uniform(21) + 10), type: .Mass),
+            Weapon(name: "Cartoon Mass", damage: 1, type: .Mass),
+            Weapon(name: "Mass", damage: 5, type: .Mass),
+            Weapon(name: "Super Dagger", damage: Int(arc4random_uniform(31) + 20), type: .Dagger),
+            Weapon(name: "Cartoon Dagger", damage: Int(arc4random_uniform(5) + 5), type: .Dagger),
+            Weapon(name: "Dagger", damage: 15, type: .Dagger),
+            Weapon(name: "Super Baton", damage: 0, heal: Int(arc4random_uniform(26) + 15), type: .Baton),
+            Weapon(name: "Carton Baton", damage: 0, heal: Int(arc4random_uniform(6) + 1), type: .Baton),
+            Weapon(name: "Baton", damage: 0, heal: Int(arc4random_uniform(15) + 6), type: .Baton),
+            ]
+        
+        var randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
+        
+        while previousWeapon.type != character.weapon.type || character.weapon.name == randomVal.name {
+            randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
+            if character.weapon.type == randomVal.type && character.weapon.name != randomVal.name {
+                character.weapon = randomVal
+                
+                return randomVal
+            }
+        }
+        
+        return randomVal
     }
 }
 

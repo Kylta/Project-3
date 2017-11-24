@@ -20,7 +20,8 @@ class Rogue: Character {
     init() {
         // Name: (String), Life: 80, weapon: Dagger (Damage: 15), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 80, weapon: Dagger(), level: 1)
+        super.init(name: Tools.nameCharacter(), life: 80, weapon: Weapon(name: "Dagger", damage: 15, type: .Dagger), level: 1, maxLife: 80)
+        self.weapon.type = .Dagger
     }
     
     // Rewriting of the function getType of the class mother
@@ -35,12 +36,41 @@ class Rogue: Character {
     func punishment(_ character: Character) {
         // If opponent charater is a Giant then damage = 35
         if character is Giant {
-            character.life -= 35
-            print("\(character.name) takes 35 damage, now \(character.name) had \(character.life) point of life !")
+            let randomPunishment = Int(arc4random_uniform(60) + 20)
+            let characterArmor = character.armor
+            
+            if character.armor > 1 {
+                character.armor -= randomPunishment
+                
+                if character.armor < 0 {
+                    character.armor = 0
+                    character.life -= (randomPunishment - characterArmor)
+                    print("\(character.name) take \(randomPunishment) damage, his armor absorb \(characterArmor) damage and take \(randomPunishment - characterArmor) damage !")
+                } else {
+                    print("\(self.name) made \(randomPunishment) damage at \(character.name) with PUNISHMENT and now \(character.name) armor is \(character.armor).\n")
+                }
+            } else {
+                character.life -= randomPunishment
+                print("\(character.name) takes \(randomPunishment) damage and now \(character.name) had \(character.life) point of life !")
+            }
         } else {
-            // If opponent charater is other than Giant then damage = 25
-            character.life -= 25
-            print("\(character.name) takes 25 damage, now \(character.name) had \(character.life) point of life !")
+            let randomPunishment = Int(arc4random_uniform(40) + 10)
+            let characterArmor = character.armor
+            
+            if character.armor > 1 {
+                character.armor -= randomPunishment
+                
+                if character.armor < 0 {
+                    character.armor = 0
+                    character.life -= (randomPunishment - characterArmor)
+                    print("\(character.name) take \(randomPunishment) damage, his armor absorb \(characterArmor) damage and take \(randomPunishment - characterArmor) damage !")
+                } else {
+                    print("\(self.name) made \(randomPunishment) damage at \(character.name) with PUNISHMENT and now \(character.name) armor is \(character.armor).\n")
+                }
+            } else {
+                character.life -= randomPunishment
+                print("\(character.name) takes \(randomPunishment) damage, and now \(character.name) had \(character.life) point of life !")
+            }
         }
     }
 }

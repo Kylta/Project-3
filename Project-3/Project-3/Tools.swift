@@ -19,25 +19,29 @@ class Tools {
         print("Pick a name !")
         // let answer with method readLine to interact with user
         let answer = readLine()
+
+        var isInt: Bool {
+            return Int(answer!) != nil
+        }
         // constante for use method checkUniqueName in nameCharacter() for name of characters are unique
         let unique = checkUniqueName(checkName: answer!)
         
         // if unique == false we repeat nameCharacter() until name are unique
-        if !unique {
+        if !unique || isInt {
             return nameCharacter()
         }
         // We force unwrapped answer because  are sure there will be a string
-        return answer!
+        return answer!.capitalized
     }
     
     // Method for check if name is unique
     static func checkUniqueName(checkName: String) -> Bool {
         
+        names.append("")
         // Check in the array names if name is already taken
         for name in names {
             // If the name is not unique it indicate at user than he has to choose a new name
-            if name == checkName {
-                
+            if name.capitalized == checkName.capitalized {
                 print("This name is already taken, try again !")
                 return false
             }
@@ -66,5 +70,11 @@ class Tools {
         }
         // return method answerInt until it be an Int
         return answerInt()
+    }
+
+    
+    static func randomNumber() -> Int {
+        
+        return Int(arc4random_uniform(100) + 1)
     }
 }

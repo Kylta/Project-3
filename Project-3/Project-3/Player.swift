@@ -53,7 +53,7 @@ class Player {
                         let mage = Mage()
                         team.append(mage)
                     default:
-                    print("Choose a number between 1 and 4.\nI don't understand !")
+                    print("Choose a number from 1 to 4.\nI don't understand !")
                     }
                 } while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4) // While player isn't in the range between 1..4 it repeat
         }
