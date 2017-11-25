@@ -39,24 +39,27 @@ class Mage: Character {
         // When mage use heal, baton.heal (heal: 7) whill had 7 points of life at character choosen
         character.life += weapon.heal!
         
-        if character.life > character.maxLife {
-            character.life = character.maxLife
-        }
+        maxlife(character: character)
         // Indicate at user than Mage has heal character
         print("\(name) heal \(character.name) of \(weapon.heal!) points of life with \(weapon.name) and now \(character.name) life is \(character.life).\n")
     }
     
     // Method for ultimatum Mage (BONUS)
     func blessing(_ character: Player) {
-        // Give + 10 points of life at all characters of his team
+        // Give random heal at all characters of his team
         let randomHeal = Int(arc4random_uniform(30) + 15)
         for characters in character.team {
             characters.life += randomHeal
             
-            if characters.life > characters.maxLife {
-                characters.life = characters.maxLife
-            }
+            maxlife(character: characters)
             print("\(name) heal \(characters.name) of \(randomHeal) points of life and now \(characters.name) is \(characters.life) point of life!")
+        }
+    }
+    
+    // For character life don't be more than his max life
+    func maxlife(character: Character) {
+        if character.life > character.maxLife {
+            character.life = character.maxLife
         }
     }
 }

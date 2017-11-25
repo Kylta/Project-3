@@ -24,7 +24,6 @@ class Player {
     
     // Method for player create his team
     func createTeam() {
-        
         // repeat while array team contains 3 characters
         while team.count < 3 {
             print("\nMake a choice !")

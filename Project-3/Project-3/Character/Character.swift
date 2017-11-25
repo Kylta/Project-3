@@ -25,6 +25,8 @@ class Character {
     var armor : Int
     //
     var maxLife: Int
+    //
+    var turnLevel: Int
     
     // Constructor
     convenience init() {
@@ -39,6 +41,7 @@ class Character {
         self.level = level
         self.armor = 0
         self.maxLife = maxLife
+        self.turnLevel = 0
     }
     
     // Get infos from class
@@ -58,10 +61,11 @@ class Character {
             reduceArmore(character: character, damage: weapon.damage)
         } else {
             character.life -= weapon.damage
-            // If the life is under 0, life = 0. Then life can't be under 0.
+          /*  // If the life is under 0, life = 0. Then life can't be under 0.
             if character.life < 0 {
                 character.life = 0
-            }
+            }*/
+            deathCharacter(character: character)
             print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
         }
     }
@@ -77,6 +81,10 @@ class Character {
             if character.armor <= 0 {
                 character.armor = 0
                 character.life -= (weaponDamage - characterArmor)
+            /*    if character.life < 0 {
+                    character.life = 0
+                }*/
+                deathCharacter(character: character)
                 print("\(character.name) take \(damage) damage, his armor absorb \(characterArmor) damage and \(character.name) take \(damage - characterArmor) damage ! Now \(character.name) had \(character.life) points of life !")
             } else {
                 print("\(self.name) made \(damage) damage at \(character.name) and now \(character.name) armor is \(character.armor).\n")
@@ -84,18 +92,25 @@ class Character {
         }
     }
     
+    func deathCharacter(character: Character) {
+        if character.life < 0 {
+            character.life = 0
+        }
+    }
+    
     // Method for character up level
     func upLevel(turn: Int) {
-        if turn == 3 {
+        if turn == 3 || turn == 6 || turn == 9 {
             self.level += 1
             print("\(self.name) up level \(self.level) !")
         }
     }
     
     func newWeapons(character: Character) -> Weapon {
-        
+        // Initalise viaraible previsouWeapon
         let previousWeapon = Weapon()
         
+        // Create Array of weapons
         var newWeapons = [
             Weapon(name: "Super Sword", damage: Int(arc4random_uniform(26) + 15), type: .Sword),
             Weapon(name: "Cartoon Sword", damage: Int(arc4random_uniform(6) + 1), type: .Sword),
@@ -111,6 +126,7 @@ class Character {
             Weapon(name: "Baton", damage: 0, heal: Int(arc4random_uniform(15) + 6), type: .Baton),
             ]
         
+        // Init randomVal with random element in newWeapons array
         var randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
         
         while previousWeapon.type != character.weapon.type || character.weapon.name == randomVal.name {

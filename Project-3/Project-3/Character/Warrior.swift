@@ -33,14 +33,17 @@ class Warrior: Character {
     }
     
     func spinningBlade(_ character: Player) {
-        // Made 15 damages at all opponent characters
+        // Made random damages at all opponent characters
         let randomSpinningBlade = Int(arc4random_uniform(30) + 25)
         
         for characters in character.team {
             if characters.armor >= 1 {
                 reduceArmore(character: characters, damage: randomSpinningBlade)
             } else {
-                print("\(characters.name) takes \(randomSpinningBlade) damage and now \(characters.name) life is \(characters.life - randomSpinningBlade)!")
+                characters.life -= randomSpinningBlade
+                deathCharacter(character: characters)
+              //  deathCharacter(character: characters)
+                print("\(characters.name) takes \(randomSpinningBlade) damage and now \(characters.name) life is \(characters.life)!")
             }
         }
     }

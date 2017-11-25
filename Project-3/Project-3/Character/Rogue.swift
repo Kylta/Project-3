@@ -36,21 +36,25 @@ class Rogue: Character {
     func punishment(_ character: Character) {
         // If opponent charater is a Giant then damage = 35
         if character is Giant {
+            // Made random damages at Giant opponent characters class (1 target)
             let randomPunishment = Int(arc4random_uniform(60) + 20)
             
             if character.armor >= 1 {
                 reduceArmore(character: character, damage: randomPunishment)
             } else {
                 character.life -= randomPunishment
+                deathCharacter(character: character)
                 print("\(character.name) takes \(randomPunishment) damage and now \(character.name) had \(character.life) point of life !")
             }
         } else {
+            // Made random damages at all other characters class (1 target)
             let randomPunishment = Int(arc4random_uniform(40) + 10)
             
             if character.armor >= 1 {
                 reduceArmore(character: character, damage: randomPunishment)
             } else {
                 character.life -= randomPunishment
+                deathCharacter(character: character)
                 print("\(character.name) takes \(randomPunishment) damage, and now \(character.name) had \(character.life) point of life !")
             }
         }

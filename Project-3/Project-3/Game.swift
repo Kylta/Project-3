@@ -62,7 +62,7 @@ class Game {
         // variable for know how many turns players play
         var turn = 0
         // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level
-        var turnLevel = 0
+        //  var turnLevel = 0
         // variable for attacker player
         var attackingPlayer = players[0]
         // variable for defender player
@@ -86,40 +86,45 @@ class Game {
                 x += 1
             }
             x = 0
-            // If turnLevel > 4, then turnLevel = 1
-            if turnLevel == 4 {
-                turnLevel = 1
-            }
+            /* // If turnLevel > 4, then turnLevel = 1
+             if turnLevel == 4 {
+             turnLevel = 1
+             }*/
             
             // Use an constante chooseCharacter for keep the choice of users
             let chooseCharacter = attackingPlayer.selectCharacter(player: attackingPlayer)
             
+            
             // Use upLevel on chooseCharacter for character up level of 1
-            chooseCharacter.upLevel(turn: turnLevel)
+            chooseCharacter.upLevel(turn: chooseCharacter.turnLevel)
             
             // Use method classCharacter
-            fightClassCharacter(chooseCharacter: chooseCharacter, attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn, turnLevel: turnLevel)
+            fightClassCharacter(chooseCharacter: chooseCharacter, attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn, turnLevel: chooseCharacter.turnLevel)
             // up turn & turnLevel when attackPlayer has be count 2 times
             if attackingPlayer === players[1] {
                 turn += 1
-                turnLevel += 1
             }
             
             // Method for check life characters and remove character if life = 0
             deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
             
+            chooseCharacter.turnLevel += 1
+            print(" turnLevel of \(chooseCharacter.name) = \(chooseCharacter.turnLevel)")
+            
             // Swap between player 1 & player 2
             swap(&attackingPlayer,&defendingPlayer)
         }
     }
+    
     // Method because depend from character (Bonus, mage etc...)
     func fightClassCharacter(chooseCharacter: Character, attackingPlayer: Player, defendingPlayer: Player, turn: Int, turnLevel: Int) {
+        // Init x
         var x = 0
-        
+        // Init pourcentNumber
         let pourcentNumber = 30
         
-        if (chooseCharacter.level == 3 && turnLevel == 3) || (chooseCharacter.level == 6 && turnLevel == 3) {
-            
+        // Condition for character use Ultimatum
+        if (chooseCharacter.level == 3 && chooseCharacter.turnLevel == 6) || (chooseCharacter.level == 6 && chooseCharacter.turnLevel == 12) {
             switch chooseCharacter {
             case is Mage:
                 print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
@@ -127,13 +132,16 @@ class Game {
             case is Warrior:
                 print("Ultimatum of \(chooseCharacter.name) : SPINNING BLADE !")
                 (chooseCharacter as! Warrior).spinningBlade(defendingPlayer)
+                deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
             case is Giant:
                 print("Ultimatum of \(chooseCharacter.name) : EARTHQUAKE !")
                 (chooseCharacter as! Giant).earthquake(defendingPlayer)
+                deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
             case is Rogue:
                 print("Ultimatum of \(chooseCharacter.name) : PUNISHMENT !")
                 indexOpponentCharacters(player: defendingPlayer)
                 (chooseCharacter as! Rogue).punishment(defendingPlayer.team[Tools.answerInt()])
+                deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
                 print("\nNow \(chooseCharacter.name) you can attack !")
             default:
                 print("")
@@ -169,8 +177,6 @@ class Game {
         }
     }
     
-    
-    
     // Method if character life = 0 then remove character from array
     func deathCharacter(attackingPlayer: Player, defendingPlayer: Player, turn: Int) {
         var i = 0
@@ -194,27 +200,30 @@ class Game {
         }
     }
     
-    
-    
     // Method for step 3, make appears a box in random turn
     func mysteryBox(character: Character) {
         print("\n==== MYSTERY BOX ===\nThere is a mystery box, you have 1 choice for 2 options.\n1: New weapon\n2: Armor \n=== Take your choice ! ===")
         // Explain above !
         switch Tools.answerInt() {
         case 1:
+            // Init variable with method NewWeapons from Character for character change weapon
             let newWeapon = character.newWeapons(character: character)
+            // If character is Mage class
             if let mage = character as? Mage {
                 mage.weapon = newWeapon
                 print("Now \(character.name) wear \(newWeapon.name) and add \(newWeapon.heal!) points of life !")
             } else {
+            // If character in Other class
                 character.weapon = newWeapon
                 print("Now \(character.name) wear \(newWeapon.name) and infliged \(newWeapon.damage) damage !")
             }
         case 2:
+            // If character wear more than 5 armor
             if character.armor > 5 {
                 print("Your character wear already \(character.armor) armor !")
                 break
             } else {
+            // If character doesn't wear armor of less than 5 he get new armor
                 character.armor += Int(arc4random_uniform(25) + 5)
                 print("Now \(character.name) has \(character.armor) armor !")
             }
@@ -231,7 +240,7 @@ class Game {
         // Indicate at player character index opponent with infos
         print("\nAdverse character to target !")
         for character in player.team {
-            print("\(x) = \(character.name) as \(character.getType()) had \(character.life) points of life and \(character.armor) armor !")
+            print("\(x) = \(character.name) as \(character.getType()) had \(character.life) points of life and \(character.armor) armor ! (Level = \(character.level))")
             // We increment index
             x += 1
         }

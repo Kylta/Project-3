@@ -33,14 +33,16 @@ class Giant: Character {
     }
     
     func earthquake(_ character: Player) {
-        // Made 10 damages at all opponent characters
+        // Made random damages at all opponent characters
         let randomEarthquake = Int(arc4random_uniform(30) + 15)
         
         for characters in character.team {
             if characters.armor >= 1 {
                 reduceArmore(character: characters, damage: randomEarthquake)
             } else {
-                print("\(characters.name) takes \(randomEarthquake) damage and now \(characters.name) life is \(characters.life - randomEarthquake)!")
+                characters.life -= randomEarthquake
+                deathCharacter(character: characters)
+                print("\(characters.name) takes \(randomEarthquake) damage and now \(characters.name) life is \(characters.life)!")
             }
         }
     }

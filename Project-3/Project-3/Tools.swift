@@ -72,9 +72,9 @@ class Tools {
         return answerInt()
     }
     
-    
+    // Static function for make appears random number from 1 to 100
     static func randomNumber() -> Int {
-        
+        // Init random number from 1 to 100
         return Int(arc4random_uniform(100) + 1)
     }
 }
