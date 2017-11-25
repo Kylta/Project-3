@@ -43,14 +43,14 @@ Create your first video game with Swift !
 ### **Ultimatum**
 #### Ultimatum are Bonus, characters need to be level 3, 6 or 9 to use it. It's a passif you havn't to choose character to target except for Rogue. Just Rogue had to choose a target.
 
-**Spinning Blade :** *from* **25** *to* **55** *damage at all opponent characters*  ***Warrior***
+**Spinning Blade :** *from* **25** *to* **55** *damage at all opponent characters*  ***(Warrior)***
 
-**Earthquake :** *from* **15** *to* **45** *damage at all opponent characters*  ***Giant***
+**Earthquake :** *from* **15** *to* **45** *damage at all opponent characters*  ***(Giant)***
 
-**Punishment :** *from* **20** *to* **80** *damage for Giant class*   ***Rogue***
-                            *- from* **10** to **50** *damage for other classes*    ***Rogue***
+**Punishment :** *from* **20** *to* **80** *damage for Giant class*
+                            *- from* **10** to **50** *damage for other classes*    ***(Rogue)***
 
-**Benediction :** *from* **15** *to* **45** *heal at all team characters*   ***Mage***
+**Benediction :** *from* **15** *to* **45** *heal at all team characters*   ***(Mage)***
 
 ### **Armor**
 #### An mystery box will appear at random moment including 2 choices
