@@ -55,5 +55,6 @@ Create your first video game with Swift !
 ### **Armor**
 #### An mystery box will appear at random moment including 2 choices
 **1. Change Weapons** *Each characters can change weapon at this moment, inside there is **Super Weapons** or **Cartoon Weapons**.* ***random select !***
+
 **2. Armor** *Each characters can wear armor, but if character wear already more than **5 points of armor** he can't wear again a new armor. **Charcters need to be under 5 points of armor for get a new one !***
 
