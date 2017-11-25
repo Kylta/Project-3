@@ -47,7 +47,7 @@ Create your first video game with Swift !
 
 **Earthquake :** *from* **15** *to* **45** *damage at all opponent characters*  ***Giant***
 
-**Punishment :** *- from* **20** *to* **80** *damage for Giant class*   ***Rogue***
+**Punishment :** *from* **20** *to* **80** *damage for Giant class*   ***Rogue***
                             *- from* **10** to **50** *damage for other classes*    ***Rogue***
 
 **Benediction :** *from* **15** *to* **45** *heal at all team characters*   ***Mage***
