@@ -34,7 +34,6 @@ class Mage: Character {
     
     // Method for Mage heal
     func heal(_ character: Character) {
-        // contante for baton as Baton
         
         // When mage use heal, baton.heal (heal: 7) whill had 7 points of life at character choosen
         character.life += weapon.heal!

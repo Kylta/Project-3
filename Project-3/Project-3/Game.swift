@@ -124,7 +124,7 @@ class Game {
         let pourcentNumber = 30
         
         // Condition for character use Ultimatum
-        if (chooseCharacter.level == 3 && chooseCharacter.turnLevel == 6) || (chooseCharacter.level == 6 && chooseCharacter.turnLevel == 12) {
+        if (chooseCharacter.level == 3 && chooseCharacter.turnLevel == 6) || (chooseCharacter.level == 6 && chooseCharacter.turnLevel == 12) || (chooseCharacter.level == 9 && chooseCharacter.turnLevel == 18) {
             switch chooseCharacter {
             case is Mage:
                 print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
@@ -207,13 +207,13 @@ class Game {
         switch Tools.answerInt() {
         case 1:
             // Init variable with method NewWeapons from Character for character change weapon
-            let newWeapon = character.newWeapons(character: character)
+            let newWeapon = character.changeWeapon(character: character)
             // If character is Mage class
             if let mage = character as? Mage {
                 mage.weapon = newWeapon
                 print("Now \(character.name) wear \(newWeapon.name) and add \(newWeapon.heal!) points of life !")
             } else {
-            // If character in Other class
+                // If character in Other class
                 character.weapon = newWeapon
                 print("Now \(character.name) wear \(newWeapon.name) and infliged \(newWeapon.damage) damage !")
             }
@@ -223,7 +223,7 @@ class Game {
                 print("Your character wear already \(character.armor) armor !")
                 break
             } else {
-            // If character doesn't wear armor of less than 5 he get new armor
+                // If character doesn't wear armor of less than 5 he get new armor
                 character.armor += Int(arc4random_uniform(25) + 5)
                 print("Now \(character.name) has \(character.armor) armor !")
             }

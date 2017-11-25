@@ -38,11 +38,11 @@ class Warrior: Character {
         
         for characters in character.team {
             if characters.armor >= 1 {
-                reduceArmore(character: characters, damage: randomSpinningBlade)
+                reduceArmore(character: characters, damage: randomSpinningBlade, string: "with SpinningBlade")
             } else {
                 characters.life -= randomSpinningBlade
                 deathCharacter(character: characters)
-              //  deathCharacter(character: characters)
+                //  deathCharacter(character: characters)
                 print("\(characters.name) takes \(randomSpinningBlade) damage and now \(characters.name) life is \(characters.life)!")
             }
         }

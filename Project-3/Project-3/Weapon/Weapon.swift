@@ -26,7 +26,6 @@ class Weapon {
     var heal: Int?
     
     // Constructor
-    
     convenience init() {
         self.init(name: "", damage: 0, type: .Hands)
     }

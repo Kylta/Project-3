@@ -40,7 +40,7 @@ class Rogue: Character {
             let randomPunishment = Int(arc4random_uniform(60) + 20)
             
             if character.armor >= 1 {
-                reduceArmore(character: character, damage: randomPunishment)
+                reduceArmore(character: character, damage: randomPunishment, string: "with Punishment")
             } else {
                 character.life -= randomPunishment
                 deathCharacter(character: character)
@@ -51,7 +51,7 @@ class Rogue: Character {
             let randomPunishment = Int(arc4random_uniform(40) + 10)
             
             if character.armor >= 1 {
-                reduceArmore(character: character, damage: randomPunishment)
+                reduceArmore(character: character, damage: randomPunishment, string: ("with Punishment"))
             } else {
                 character.life -= randomPunishment
                 deathCharacter(character: character)

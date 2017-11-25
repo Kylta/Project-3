@@ -21,11 +21,11 @@ class Character {
     var weapon: Weapon
     // Level of character (BONUS)
     var level: Int
-    //
+    // Armor of character (BONUS)
     var armor : Int
-    //
+    // Max life of character
     var maxLife: Int
-    //
+    // Count turn level for character (BONUS)
     var turnLevel: Int
     
     // Constructor
@@ -58,20 +58,20 @@ class Character {
     func attack(_ character: Character) {
         
         if character.armor > 1 {
-            reduceArmore(character: character, damage: weapon.damage)
+            reduceArmore(character: character, damage: weapon.damage, string : "with \(weapon.name)")
         } else {
             character.life -= weapon.damage
-          /*  // If the life is under 0, life = 0. Then life can't be under 0.
-            if character.life < 0 {
-                character.life = 0
-            }*/
+            /*  // If the life is under 0, life = 0. Then life can't be under 0.
+             if character.life < 0 {
+             character.life = 0
+             }*/
             deathCharacter(character: character)
             print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
         }
     }
     
     // Indicate at user character has been attacked
-    func reduceArmore(character: Character, damage: Int) {
+    func reduceArmore(character: Character, damage: Int, string: String) {
         let weaponDamage = damage
         let characterArmor = character.armor
         
@@ -81,13 +81,13 @@ class Character {
             if character.armor <= 0 {
                 character.armor = 0
                 character.life -= (weaponDamage - characterArmor)
-            /*    if character.life < 0 {
-                    character.life = 0
-                }*/
+                /*    if character.life < 0 {
+                 character.life = 0
+                 }*/
                 deathCharacter(character: character)
                 print("\(character.name) take \(damage) damage, his armor absorb \(characterArmor) damage and \(character.name) take \(damage - characterArmor) damage ! Now \(character.name) had \(character.life) points of life !")
             } else {
-                print("\(self.name) made \(damage) damage at \(character.name) and now \(character.name) armor is \(character.armor).\n")
+                print("\(self.name) made \(damage) damage at \(character.name) \(string) and now \(character.name) armor is \(character.armor).\n")
             }
         }
     }
@@ -106,12 +106,12 @@ class Character {
         }
     }
     
-    func newWeapons(character: Character) -> Weapon {
-        // Initalise viaraible previsouWeapon
-        let previousWeapon = Weapon()
+    func changeWeapon(character: Character) -> Weapon {
+        // Initalise variable previsouWeapon
+        let weapon = Weapon()
         
         // Create Array of weapons
-        var newWeapons = [
+        let newWeapons = [
             Weapon(name: "Super Sword", damage: Int(arc4random_uniform(26) + 15), type: .Sword),
             Weapon(name: "Cartoon Sword", damage: Int(arc4random_uniform(6) + 1), type: .Sword),
             Weapon(name: "Sword", damage: 10, type: .Sword),
@@ -129,7 +129,7 @@ class Character {
         // Init randomVal with random element in newWeapons array
         var randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
         
-        while previousWeapon.type != character.weapon.type || character.weapon.name == randomVal.name {
+        while weapon.type != character.weapon.type || character.weapon.name == randomVal.name {
             randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
             if character.weapon.type == randomVal.type && character.weapon.name != randomVal.name {
                 character.weapon = randomVal
@@ -140,5 +140,4 @@ class Character {
         return randomVal
     }
 }
-
 

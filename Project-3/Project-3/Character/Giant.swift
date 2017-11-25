@@ -38,7 +38,7 @@ class Giant: Character {
         
         for characters in character.team {
             if characters.armor >= 1 {
-                reduceArmore(character: characters, damage: randomEarthquake)
+                reduceArmore(character: characters, damage: randomEarthquake, string: "with Eathquake")
             } else {
                 characters.life -= randomEarthquake
                 deathCharacter(character: characters)
