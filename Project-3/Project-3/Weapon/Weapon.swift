@@ -20,21 +20,22 @@ class Weapon {
     var name: String
     // Damage for weapon (Int)
     var damage: Int
-    //
+    // Type of weapon (Sword, Mass, Dagger, Baton or Hands) from enum above
     var type: WeaponType
-    //
+    // Unwrapped optional because used only on Mage and we know he had heal value at his init
     var heal: Int?
     
     // Constructor
     convenience init() {
         self.init(name: "", damage: 0, type: .Hands)
     }
-    
+    // Constructor for damager characters
     init(name: String, damage: Int, type: WeaponType) {
         self.name = name
         self.damage = damage
         self.type = type
     }
+    // Constructor for healer characters
     init(name: String, damage: Int, heal: Int, type: WeaponType) {
         self.name = name
         self.heal = heal

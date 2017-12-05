@@ -34,7 +34,7 @@ class Rogue: Character {
     
     // Method for ultimatum Rogue (BONUS)
     func punishment(_ character: Character) {
-        // If opponent charater is a Giant then damage = 35
+        // If opponent charater is a Giant then damage are from 20 to 80.
         if character is Giant {
             // Made random damages at Giant opponent characters class (1 target)
             let randomPunishment = Int(arc4random_uniform(60) + 20)
@@ -47,7 +47,7 @@ class Rogue: Character {
                 print("\(character.name) takes \(randomPunishment) damage and now \(character.name) had \(character.life) point of life !")
             }
         } else {
-            // Made random damages at all other characters class (1 target)
+            // Made random damages at all other characters class (1 target). Damage from 10 to 50 damage.
             let randomPunishment = Int(arc4random_uniform(40) + 10)
             
             if character.armor >= 1 {

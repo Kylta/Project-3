@@ -92,6 +92,7 @@ class Character {
         }
     }
     
+    // If character life is under 0 points of life, character is dead
     func deathCharacter(character: Character) {
         if character.life < 0 {
             character.life = 0
@@ -100,12 +101,14 @@ class Character {
     
     // Method for character up level
     func upLevel(turn: Int) {
-        if turn == 3 || turn == 6 || turn == 9 {
+        
+        if turn == 3 || turn == 6 || turn == 9 || turn == 12 || turn == 15 || turn == 18 || turn == 21 || turn == 24 {
             self.level += 1
             print("\(self.name) up level \(self.level) !")
         }
     }
     
+    // Method for character change weapon based on his type (Warrior = sword, Giant = mass, Rogue = dagger and Mage = baton)
     func changeWeapon(character: Character) -> Weapon {
         // Initalise variable previsouWeapon
         let weapon = Weapon()
@@ -129,6 +132,7 @@ class Character {
         // Init randomVal with random element in newWeapons array
         var randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
         
+        // Condition for character had a weapon according to his type
         while weapon.type != character.weapon.type || character.weapon.name == randomVal.name {
             randomVal = newWeapons[Int(arc4random_uniform(UInt32(newWeapons.count)))]
             if character.weapon.type == randomVal.type && character.weapon.name != randomVal.name {

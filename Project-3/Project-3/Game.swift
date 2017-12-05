@@ -109,7 +109,7 @@ class Game {
             deathCharacter(attackingPlayer: attackingPlayer, defendingPlayer: defendingPlayer, turn: turn)
             
             chooseCharacter.turnLevel += 1
-            print(" turnLevel of \(chooseCharacter.name) = \(chooseCharacter.turnLevel)")
+            print("TurnLevel of \(chooseCharacter.name) = \(chooseCharacter.turnLevel)")
             
             // Swap between player 1 & player 2
             swap(&attackingPlayer,&defendingPlayer)
@@ -124,7 +124,7 @@ class Game {
         let pourcentNumber = 30
         
         // Condition for character use Ultimatum
-        if (chooseCharacter.level == 3 && chooseCharacter.turnLevel == 6) || (chooseCharacter.level == 6 && chooseCharacter.turnLevel == 12) || (chooseCharacter.level == 9 && chooseCharacter.turnLevel == 18) {
+        if (chooseCharacter.level == 3 && chooseCharacter.turnLevel == 6) || (chooseCharacter.level == 6 && chooseCharacter.turnLevel == 15) || (chooseCharacter.level == 9 && chooseCharacter.turnLevel == 24) {
             switch chooseCharacter {
             case is Mage:
                 print("Ultimatum of \(chooseCharacter.name) : BLESSING !")
@@ -179,6 +179,7 @@ class Game {
     
     // Method if character life = 0 then remove character from array
     func deathCharacter(attackingPlayer: Player, defendingPlayer: Player, turn: Int) {
+        // i is the index character in the array
         var i = 0
         
         for characters in defendingPlayer.team {

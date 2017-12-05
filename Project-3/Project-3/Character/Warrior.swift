@@ -32,6 +32,7 @@ class Warrior: Character {
         return classe + type
     }
     
+    // Bonus for Warrior, Ultimatum. From 25 to 55 random damage at opponent characters.
     func spinningBlade(_ character: Player) {
         // Made random damages at all opponent characters
         let randomSpinningBlade = Int(arc4random_uniform(30) + 25)

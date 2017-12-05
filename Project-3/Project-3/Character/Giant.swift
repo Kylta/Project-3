@@ -32,6 +32,7 @@ class Giant: Character {
         return classe + type
     }
     
+    // Bonus for Warrior, Ultimatum. From 15 to 45 random damage at opponent characters.
     func earthquake(_ character: Player) {
         // Made random damages at all opponent characters
         let randomEarthquake = Int(arc4random_uniform(30) + 15)

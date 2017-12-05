@@ -43,7 +43,7 @@ class Mage: Character {
         print("\(name) heal \(character.name) of \(weapon.heal!) points of life with \(weapon.name) and now \(character.name) life is \(character.life).\n")
     }
     
-    // Method for ultimatum Mage (BONUS)
+    // // Bonus for Mage, Ultimatum. From 15 to 45 random heal at friendly characters.
     func blessing(_ character: Player) {
         // Give random heal at all characters of his team
         let randomHeal = Int(arc4random_uniform(30) + 15)
