@@ -26,10 +26,10 @@ class Game {
                =========================================\n
 
                                 BONUS:
-    Mage: Blessing (heal all characters of his team +10 points of life (Level 3 and 6)
-    Warrior: SpinningBlade (made all opponent characters -15 points of life (Level 3 and 6)
-    Giant: Earthquake (made all opponent characters -10 points of life (Level 3 and 6)
-    Rogue: Punishment (made -35 damage if opponent character is Giant or -25 damage if character if Mage, Rogue or Warrior (Level 3 and 6)
+    Mage: Blessing (heal all characters of his team +10 points of life (Level 3, 6 and 9)
+    Warrior: SpinningBlade (made all opponent characters -15 points of life (Level 3, 6 and 9)
+    Giant: Earthquake (made all opponent characters -10 points of life (Level 3, 6 and 9)
+    Rogue: Punishment (made -35 damage if opponent character is Giant or -25 damage if character if Mage, Rogue or Warrior (Level 3, 6 and 9)
     Character need to be at all x3 turn and be chosen for up level !\n\n
     """)
     }
@@ -44,7 +44,7 @@ class Game {
             
             // Print instruction for user
             print("\(player.name):\nCreate your team ! (3 Characters)")
-            print("1. Warrior (Damage/Tank) Life: 100, damage: 10\n2. Giant (Tank) Life: 120, damage: 5\n3. Rogue (Damage) Life: 80, damage: 15\n4. Mage (Heal) Life: 100, heal: 7")
+            print("1. Warrior (Damage/Tank) Life: 100, damage: 10\n2. Giant (Tank) Life: 120, damage: 5\n3. Rogue (Damage) Life: 80, damage: 15\n4. Mage (Heal) Life: 100, heal: 3-10")
             // Use method createTeam() of player for user create his team
             player.createTeam()
             
@@ -61,8 +61,6 @@ class Game {
     func fight() {
         // variable for know how many turns players play
         var turn = 0
-        // variable for character up level (Bonus) Need at character to be at turnlevel 3 for up level
-        //  var turnLevel = 0
         // variable for attacker player
         var attackingPlayer = players[0]
         // variable for defender player
@@ -86,14 +84,9 @@ class Game {
                 x += 1
             }
             x = 0
-            /* // If turnLevel > 4, then turnLevel = 1
-             if turnLevel == 4 {
-             turnLevel = 1
-             }*/
-            
+
             // Use an constante chooseCharacter for keep the choice of users
             let chooseCharacter = attackingPlayer.selectCharacter(player: attackingPlayer)
-            
             
             // Use upLevel on chooseCharacter for character up level of 1
             chooseCharacter.upLevel(turn: chooseCharacter.turnLevel)

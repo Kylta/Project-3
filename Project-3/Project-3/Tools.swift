@@ -33,7 +33,7 @@ class Tools {
         // We force unwrapped answer because  are sure there will be a string
         return answer!.capitalized
     }
-    
+
     // Method for check if name is unique
     static func checkUniqueName(checkName: String) -> Bool {
         

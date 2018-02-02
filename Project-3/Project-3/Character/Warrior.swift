@@ -33,18 +33,18 @@ class Warrior: Character {
     }
     
     // Bonus for Warrior, Ultimatum. From 25 to 55 random damage at opponent characters.
-    func spinningBlade(_ character: Player) {
+    func spinningBlade(_ player: Player) {
         // Made random damages at all opponent characters
         let randomSpinningBlade = Int(arc4random_uniform(30) + 25)
         
-        for characters in character.team {
-            if characters.armor >= 1 {
-                reduceArmore(character: characters, damage: randomSpinningBlade, string: "with SpinningBlade")
+        for character in player.team {
+            if character.armor >= 1 {
+                reduceArmore(character: character, damage: randomSpinningBlade, string: "with SpinningBlade")
             } else {
-                characters.life -= randomSpinningBlade
-                deathCharacter(character: characters)
+                character.life -= randomSpinningBlade
+                deathCharacter(character: character)
                 //  deathCharacter(character: characters)
-                print("\(characters.name) takes \(randomSpinningBlade) damage and now \(characters.name) life is \(characters.life)!")
+                print("\(character.name) takes \(randomSpinningBlade) damage and now \(character.name) life is \(character.life)!")
             }
         }
     }

@@ -20,7 +20,7 @@ class Mage: Character {
     init() {
         // Name: (String), Life: 100, weapon: Baton (Heal: 7), level: 1 (Bonus)
         // Use Tools.nameCharacter() for user choose name
-        super.init(name: Tools.nameCharacter(), life: 100, weapon: Weapon(name: "Baton", damage: 0, heal: Int(arc4random_uniform(7) + 3), type: .Baton), level: 1, maxLife: 100)
+        super.init(name: Tools.nameCharacter(), life: 100, weapon: Weapon(name: "Baton", damage: 0, heal: Int(arc4random_uniform(8) + 3), type: .Baton), level: 1, maxLife: 100)
         self.weapon.type = .Baton
     }
     
@@ -35,7 +35,7 @@ class Mage: Character {
     // Method for Mage heal
     func heal(_ character: Character) {
         
-        // When mage use heal, baton.heal (heal: 7) whill had 7 points of life at character choosen
+        // When mage use heal, baton.heal (heal: 7) will had 7 points of life at character choosen
         character.life += weapon.heal!
         
         maxlife(character: character)
@@ -44,14 +44,14 @@ class Mage: Character {
     }
     
     // // Bonus for Mage, Ultimatum. From 15 to 45 random heal at friendly characters.
-    func blessing(_ character: Player) {
+    func blessing(_ player: Player) {
         // Give random heal at all characters of his team
         let randomHeal = Int(arc4random_uniform(30) + 15)
-        for characters in character.team {
-            characters.life += randomHeal
+        for character in player.team {
+            character.life += randomHeal
             
-            maxlife(character: characters)
-            print("\(name) heal \(characters.name) of \(randomHeal) points of life and now \(characters.name) is \(characters.life) point of life!")
+            maxlife(character: character)
+            print("\(name) heal \(character.name) of \(randomHeal) points of life and now \(character.name) is \(character.life) point of life!")
         }
     }
     

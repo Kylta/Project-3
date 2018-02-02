@@ -33,17 +33,17 @@ class Giant: Character {
     }
     
     // Bonus for Warrior, Ultimatum. From 15 to 45 random damage at opponent characters.
-    func earthquake(_ character: Player) {
+    func earthquake(_ player: Player) {
         // Made random damages at all opponent characters
         let randomEarthquake = Int(arc4random_uniform(30) + 15)
         
-        for characters in character.team {
-            if characters.armor >= 1 {
-                reduceArmore(character: characters, damage: randomEarthquake, string: "with Eathquake")
+        for character in player.team {
+            if character.armor >= 1 {
+                reduceArmore(character: character, damage: randomEarthquake, string: "with Eathquake")
             } else {
-                characters.life -= randomEarthquake
-                deathCharacter(character: characters)
-                print("\(characters.name) takes \(randomEarthquake) damage and now \(characters.name) life is \(characters.life)!")
+                character.life -= randomEarthquake
+                deathCharacter(character: character)
+                print("\(character.name) takes \(randomEarthquake) damage and now \(character.name) life is \(character.life)!")
             }
         }
     }

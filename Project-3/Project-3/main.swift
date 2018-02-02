@@ -16,4 +16,3 @@ newGame.intro()
 newGame.initializeGame()
 // When team are create by players, the fight start.
 newGame.fight()
-

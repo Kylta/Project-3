@@ -61,10 +61,7 @@ class Character {
             reduceArmore(character: character, damage: weapon.damage, string : "with \(weapon.name)")
         } else {
             character.life -= weapon.damage
-            /*  // If the life is under 0, life = 0. Then life can't be under 0.
-             if character.life < 0 {
-             character.life = 0
-             }*/
+            
             deathCharacter(character: character)
             print("\(self.name) made \(weapon.damage) damage at \(character.name) with \(weapon.name) and now \(character.name) life is \(character.life).\n")
         }
@@ -81,9 +78,6 @@ class Character {
             if character.armor <= 0 {
                 character.armor = 0
                 character.life -= (weaponDamage - characterArmor)
-                /*    if character.life < 0 {
-                 character.life = 0
-                 }*/
                 deathCharacter(character: character)
                 print("\(character.name) take \(damage) damage, his armor absorb \(characterArmor) damage and \(character.name) take \(damage - characterArmor) damage ! Now \(character.name) had \(character.life) points of life !")
             } else {
